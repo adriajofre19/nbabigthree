@@ -4,11 +4,21 @@ import { defineProps, ref } from 'vue';
 import { initFlowbite } from 'flowbite';
 import { onMounted } from 'vue';
 import { useForm } from '@inertiajs/vue3';
+import Modal from '@/Components/Modal.vue';
+
 
 const form = useForm({
-    titular_id: '1',
-    suplent_id: '6'
+    titular_id: '',
+    suplent_id: ''
 });
+
+const submit = () => {
+    form.post(route('players-titular-suplente.update'), {
+        onFinish: () => form.reset('titular_id', 'suplent_id'),
+        
+    });
+    changePlayer.value = false;
+};
     
 onMounted(() => {
   initFlowbite();
@@ -25,25 +35,32 @@ function getFirstName(name) {
     return name.split(' ')[0];
 }
 
-function updateplayer(first_id, second_id) {
-    console.log(first_id, second_id);
+
+
+
+let suplents = props.players.filter(player => player.role === 'suplente');
+
+const changePlayer = ref(false);
+let selectedPlayer = ref('');
+let suplentOfSelectedPlayer = ref('');
+
+function openChangePlayerModal(playerId) {
+    form.titular_id = playerId;
+
+    selectedPlayer = props.players.find(player => player.id === playerId);
+    suplentOfSelectedPlayer = props.players.find(player => player.role === 'suplente' && player.position === selectedPlayer.position);
+    form.suplent_id = suplentOfSelectedPlayer.id;
+    
+    changePlayer.value = true;
 }
-
-
-const suplents = props.players.filter(player => player.role === 'SUPLENTE');
-
-
-
-
-
 
 
 </script>
 <template>
+<!--
     <AuthenticatedLayout>
 
-    <!-- component -->
-<div class="bg-gray-100">
+<div >
         <div class="flex flex-col mx-3 mt-6 lg:flex-row ">
             <div class="w-full lg:w-1/3 m-1 ">
                 <div className="bg-white p-8 flex items-center justify-center ">
@@ -55,7 +72,7 @@ const suplents = props.players.filter(player => player.role === 'SUPLENTE');
               <div className="w-20 h-20 border-2 border-white rounded-full"></div>
             </div>
             
-            <!-- Redonda de area seuperior -->
+            
             <div className="absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-2 border-white rounded-t-full overflow-hidden rotate-180"></div>
             <div className="absolute bottom-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-2 border-white rounded-t-full overflow-hidden"></div>
 
@@ -64,41 +81,41 @@ const suplents = props.players.filter(player => player.role === 'SUPLENTE');
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-2 border-white"></div>
 
             
-            <!-- Redonda de area seuperior -->
+            
             <div className="absolute top-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-white rounded-full"></div>
             <div className="absolute bottom-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-white rounded-full rotate-180"></div>
             
             
-            <!-- Medio campo -->
+            
             <div className="absolute inset-x-0 top-1/2 border-t-2 border-white"></div>
             
-            <!-- Canasta de arriba -->
+            
             <div className="absolute inset-x-44 top-2 border-t-2 border-white"></div>
             <div className="absolute top-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full"></div>
-            <!-- Canasta de abajo -->
+            
             <div className="absolute inset-x-44 bottom-2 border-t-2 border-white rotate-180"></div>
             <div className="absolute bottom-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full rotate-180"></div>
 
             <div v-for="player in players" :key="player.id">
                 
-                <img :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'TITULAR' && player.position === 'Base'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[5rem] right-[3rem]" />
-                <div :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'TITULAR' && player.position === 'Base'" className="absolute bottom-[3rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                <img :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'titular' && player.position === 'Base'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[5rem] right-[3rem]" />
+                <div :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'titular' && player.position === 'Base'" className="absolute bottom-[3rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
                 
                 
-                <img :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'TITULAR' && player.position === 'Escolta'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[8rem] left-[2rem]" />
-                <div :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'TITULAR' && player.position === 'Escolta'" className="absolute bottom-[6rem] left-[2rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                <img :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'titular' && player.position === 'Escolta'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[8rem] left-[2rem]" />
+                <div :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'titular' && player.position === 'Escolta'" className="absolute bottom-[6rem] left-[2rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
                 
                 
-                <img :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'TITULAR' && player.position === 'Alero'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[12rem] right-[5rem]" />
-                <div :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'TITULAR' && player.position === 'Alero'" className="absolute bottom-[10rem] right-[5rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                <img :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'titular' && player.position === 'Alero'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[12rem] right-[5rem]" />
+                <div :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'titular' && player.position === 'Alero'" className="absolute bottom-[10rem] right-[5rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
                 
                 
-                <img :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'TITULAR' && player.position === 'Ala-Pivot'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[11rem] left-[5rem]" />
-                <div :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'TITULAR' && player.position === 'Ala-Pivot'" className="absolute top-[14.6rem] left-[5rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                <img :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'titular' && player.position === 'Ala-Pivot'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[11rem] left-[5rem]" />
+                <div :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'titular' && player.position === 'Ala-Pivot'" className="absolute top-[14.6rem] left-[5rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
                 
                 
-                <img :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'TITULAR' && player.position === 'Pivot'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[8rem] right-[3rem]" />
-                <div :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'TITULAR' && player.position === 'Pivot'" className="absolute top-[11.6rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                <img :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'titular' && player.position === 'Pivot'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[8rem] right-[3rem]" />
+                <div :data-modal-target="'default-modal'+player.id" :data-modal-toggle="'default-modal'+player.id" v-if="player.role === 'titular' && player.position === 'Pivot'" className="absolute top-[11.6rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
                 
             </div> 
           </div>
@@ -158,67 +175,103 @@ const suplents = props.players.filter(player => player.role === 'SUPLENTE');
         
     </div>
 
-    </AuthenticatedLayout>
+    </AuthenticatedLayout>-->
 
 
 
-<div v-for="player in players" :key="player.id" :id="'default-modal'+player.id" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-2xl max-h-full">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow ">
-            <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
-                <h3 class="text-xl font-semibold text-gray-900 ">
-                    Cambiar jugador
-                </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" :data-modal-hide="'default-modal'+player.id">
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                    </svg>
-                    <span class="sr-only">Close modal</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <form @submit.prevent="form.patch(route('players-titular-suplente.update'))">
-            <div class="p-4 md:p-5 space-y-4">
-                <div class="text-center">
-                    <img :src="player.avatar" class="w-20 h-auto mx-auto" />
-                    <div>{{ player.name }}</div>
-                </div>
-
-
-                
-                
-
-                <div v-for="suplent in suplents" :key="suplent.id" class="">
-                    <div v-if="suplent.position === player.position" class="text-center">
-                    <img :src="suplent.avatar" class="w-20 h-auto mx-auto" />
-                    <div>{{ suplent.name }}</div>
-                    <input type="text" v-model="suplent.id" />
-                    
-
-                </div>
-                
-
-                    
-                </div>
-
-                <input type="text" v-model="player.id" />
-                
-            </div>
-
-            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
-                <button :disabled="form.processing" :data-modal-hide="'default-modal'+player.id" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cambiar jugador</button>
-            </div>
-
-            </form>
-
-
-            <!-- Modal footer -->
+<AuthenticatedLayout>
+    <div class="flex">
+        <div class="sm:w-2/5 h-screen">
+            <div className="bg-gray-100 p-8 flex items-center justify-center ">
+                <div className="bg-gray-700 sm:p-4">
+                    <div className="border-2 border-white ">
+                        <div className="relative w-80 sm:w-96 h-[32rem] bg-gray-700 ">
+                            <div className="absolute inset-0 flex items-center justify-center ">
+                                <div className="w-20 h-20 border-2 border-white rounded-full"></div>
+                            </div>
             
+                            <div className="absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-2 border-white rounded-t-full overflow-hidden rotate-180"></div>
+                            <div className="absolute bottom-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-2 border-white rounded-t-full overflow-hidden"></div>
+
+                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-2 border-white"></div>
+                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-2 border-white"></div>
+            
+                            <div className="absolute top-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-white rounded-full"></div>
+                            <div className="absolute bottom-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-white rounded-full rotate-180"></div>
+            
+                            <div className="absolute inset-x-0 top-1/2 border-t-2 border-white"></div>
+            
+                            <div className="absolute inset-x-44 top-2 border-t-2 border-white"></div>
+                            <div className="absolute top-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full"></div>
+                            
+                            <div className="absolute inset-x-44 bottom-2 border-t-2 border-white rotate-180"></div>
+                            <div className="absolute bottom-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full rotate-180"></div>
+
+                            <div v-for="player in players" :key="player.id">
+                                
+                                <img @click="openChangePlayerModal(player.id)" v-if="player.role === 'titular' && player.position === 'Base'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[5rem] right-[3rem]" />
+                                <div v-if="player.role === 'titular' && player.position === 'Base'" className="absolute bottom-[3rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                                
+                                
+                                <img @click="openChangePlayerModal(player.id)" v-if="player.role === 'titular' && player.position === 'Escolta'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[8rem] left-[2rem]" />
+                                <div v-if="player.role === 'titular' && player.position === 'Escolta'" className="absolute bottom-[6rem] left-[2rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                                
+                                
+                                <img @click="openChangePlayerModal(player.id)" v-if="player.role === 'titular' && player.position === 'Alero'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[12rem] right-[5rem]" />
+                                <div v-if="player.role === 'titular' && player.position === 'Alero'" className="absolute bottom-[10rem] right-[5rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                                
+                                
+                                <img @click="openChangePlayerModal(player.id)" v-if="player.role === 'titular' && player.position === 'Ala-Pivot'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[11rem] left-[5rem]" />
+                                <div v-if="player.role === 'titular' && player.position === 'Ala-Pivot'" className="absolute top-[14.6rem] left-[5rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                                
+                                
+                                <img @click="openChangePlayerModal(player.id)" v-if="player.role === 'titular' && player.position === 'Pivot'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[8rem] right-[3rem]" />
+                                <div v-if="player.role === 'titular' && player.position === 'Pivot'" className="absolute top-[11.6rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                                
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            
+            <div class="flex justify-center bg-gray-100">
+                <div v-for="player in players" :key="player.id">
+                    <img v-if="player.role === 'suplente'" :src="player.avatar" class="w-20 h-auto mx-auto "  />
+                    <div v-if="player.role === 'suplente'" class="text-center bg-gray-400 py-1">{{ getFirstName(player.name) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="sm:w-3/5 h-screen bg-gray-800"></div>
+    </div>
+</AuthenticatedLayout>
+
+<Modal :show="changePlayer" @close="changePlayer = false">
+    <form @submit.prevent="submit">
+    <div class="p-8">
+
+    <div class="flex justify-around">
+        <div>
+            <img :src="selectedPlayer.avatar" class="w-20 h-auto mx-auto" />
+            <div class="text-center bg-gray-400 py-1">{{ getFirstName(selectedPlayer.name) }}</div>
         </div>
     </div>
-</div>
+
+    <div class="flex justify-center">
+        <div v-for="player in players" :key="player.id">
+            <img v-if="player.role === 'suplente' && player.position === selectedPlayer.position" :src="player.avatar" class="w-20 h-auto mx-auto" />
+            <div v-if="player.role === 'suplente' && player.position === selectedPlayer.position" class="text-center bg-gray-400 py-1">{{ getFirstName(player.name) }}</div>
+        </div>
+    </div>
+
+    <button @click="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+
+    </div>
+</form>
+</Modal>
 
 
 </template>

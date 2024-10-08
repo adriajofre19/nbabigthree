@@ -20,9 +20,24 @@ class PlayersController extends Controller
         ]);
     }
 
-    public function update (Request $request, Player $player_t, player $player_s)
+    public function update (Request $request)
     {
-        dd($player_t, $player_s);
+        
+        $titular_id = $request->titular_id;
+        $suplent_id = $request->suplent_id;
+
+        $titular = Player::find($titular_id);
+        $suplent = Player::find($suplent_id);
+
+        $titular->update([
+            'role' => 'suplente',
+        ]);
+
+        $suplent->update([
+            'role' => 'titular',
+        ]);
+
+        
     }
 
 }
