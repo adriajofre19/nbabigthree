@@ -1,9 +1,14 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import Modal from '@/Components/Modal.vue';
 import { defineProps, ref } from 'vue';
 import { initFlowbite } from 'flowbite';
 import { onMounted } from 'vue';
+import { useForm } from '@inertiajs/vue3';
+
+const form = useForm({
+    titular_id: '1',
+    suplent_id: '6'
+});
     
 onMounted(() => {
   initFlowbite();
@@ -18,6 +23,10 @@ const props = defineProps({
 
 function getFirstName(name) {
     return name.split(' ')[0];
+}
+
+function updateplayer(first_id, second_id) {
+    console.log(first_id, second_id);
 }
 
 
@@ -170,6 +179,7 @@ const suplents = props.players.filter(player => player.role === 'SUPLENTE');
                 </button>
             </div>
             <!-- Modal body -->
+            <form @submit.prevent="form.patch(route('players-titular-suplente.update'))">
             <div class="p-4 md:p-5 space-y-4">
                 <div class="text-center">
                     <img :src="player.avatar" class="w-20 h-auto mx-auto" />
@@ -196,10 +206,16 @@ const suplents = props.players.filter(player => player.role === 'SUPLENTE');
                 <input type="text" v-model="player.id" />
                 
             </div>
-            <!-- Modal footer -->
+
             <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
-                <button :data-modal-hide="'default-modal'+player.id" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cambiar jugador</button>
+                <button :disabled="form.processing" :data-modal-hide="'default-modal'+player.id" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cambiar jugador</button>
             </div>
+
+            </form>
+
+
+            <!-- Modal footer -->
+            
         </div>
     </div>
 </div>

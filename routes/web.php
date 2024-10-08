@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/my-team', [PlayersController::class, 'index'])->name('my-team');
+    Route::get('/my-team/update{id}/{id}', [PlayersController::class, 'update'])->name('players-titular-suplente.update');
 });
 
 require __DIR__.'/auth.php';

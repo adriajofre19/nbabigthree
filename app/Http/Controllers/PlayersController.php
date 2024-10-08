@@ -20,4 +20,9 @@ class PlayersController extends Controller
         ]);
     }
 
+    public function update (Request $request, Player $player_t, player $player_s)
+    {
+        dd($player_t, $player_s);
+    }
+
 }
