@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('role');
             $table->json('stats')->nullable();
             $table->foreignId('user_id')->nullable()->index();
+            $table->string('player_code');
             $table->timestamps();
         });
     }
