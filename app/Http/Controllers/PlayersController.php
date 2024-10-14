@@ -9,11 +9,22 @@ use App\Models\User;
 
 use Inertia\Inertia;
 
+
 class PlayersController extends Controller
 {
     public function index(Request $request)
     {
-        $players = Player::where('user_id', $request->user()->id)->get();
+        // Get all players with id of the authenticated user and get her stats from the API
+
+        $players = Player::where('user_id', auth()->id())->get();
+
+        $stats = Player::getAllInfoFromTheApi();
+
+        foreach ($players as $player) {
+            $player->stats = Player::getInfoFromThisPlayerByThisWeek($player->player_code);
+            
+            
+        }
 
         return Inertia::render('MyTeam', [
             'players' => $players,
@@ -39,5 +50,47 @@ class PlayersController extends Controller
 
         
     }
+
+    public function getPlayerById($id)
+    {
+        $player = Player::find($id);
+
+        $player->stats = Player::getPlayerById($player->player_code);
+        
+        $totalGames = 0;
+        $totalPoints = 0;
+        $totalWins = 0;
+        $totalDefeats = 0;
+
+
+        foreach ($player->stats as $stat) {
+            $totalPoints += $stat['points'];
+            $totalGames++;
+            // get the first letter of the result
+            $result = substr($stat['result'], 0, 1);
+            if ($result == 'W') {
+                $totalWins++;
+            } else {
+                $totalDefeats++;
+            }
+        }
+
+        
+
+        $player->totalPoints = $totalPoints;
+        $player->totalGames = $totalGames;
+        $player->totalWins = $totalWins;
+        $player->totalDefeats = $totalDefeats;
+
+        return Inertia::render('Player', [
+            'player' => $player,
+        ]);
+
+        
+    }
+
+    
+
+    
 
 }

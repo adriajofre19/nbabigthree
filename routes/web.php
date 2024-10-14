@@ -33,7 +33,7 @@ Route::get('/google-callback', function () {
         Auth::login($newUser);
     }
 
-    return redirect('/dashboard');
+    return redirect('/my-team');
  
 });
 
@@ -64,6 +64,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/my-team', [PlayersController::class, 'index'])->name('my-team');
     Route::post('/my-team/update', [PlayersController::class, 'update'])->name('players-titular-suplente.update');
+
+    Route::get('/player/{id}', [PlayersController::class, 'getPlayerById'])->name('player');
 });
 
 require __DIR__.'/auth.php';
