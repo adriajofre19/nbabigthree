@@ -55,9 +55,10 @@ function openChangePlayerModal(playerId) {
 <Head title="Mi Equipo" />
 
 <AuthenticatedLayout>
+    <div class="min-h-screen bg-gradient-to-br from-orange-400 to-orange-800">
     <div class="flex">
         <div class="sm:w-2/5">
-            <div className="bg-gray-100 p-8 flex items-center justify-center ">
+            <div className="p-8 flex items-center justify-center ">
                 <div className="bg-gray-700 sm:p-4">
                     <div className="border-2 border-white ">
                         <div className="relative w-80 sm:w-96 h-[32rem] bg-gray-700 ">
@@ -119,7 +120,7 @@ function openChangePlayerModal(playerId) {
 
 
             
-            <div class="flex justify-center bg-gray-100">
+            <div class="flex justify-center ">
                 <div v-for="player in players" :key="player.id" >
                     <div v-if="player.role === 'suplente'" class="text-center w-10 bg-red-400 py-1">{{ player.stats }}</div>
                     <img v-if="player.role === 'suplente'" :src="player.avatar" class="w-20 h-auto mx-auto "  />
@@ -130,7 +131,7 @@ function openChangePlayerModal(playerId) {
         <div class="sm:w-3/5 w-full justify-center">
 
 
-            <section class="antialiased bg-gray-100 text-gray-600 px-4">
+            <section class="antialiased  text-gray-600 px-4">
                 <div class="flex flex-col justify-center h-full">
                     <!-- Table -->
                     <div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8">
@@ -196,6 +197,7 @@ function openChangePlayerModal(playerId) {
 
         </div>
     </div>
+</div>
 </AuthenticatedLayout>
 
 <Modal :show="changePlayer" @close="changePlayer = false">

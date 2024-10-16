@@ -25,6 +25,7 @@ class User extends Authenticatable
         'external_id',
         'avatar',
         'team_name',
+        'role',
     ];
 
     /**

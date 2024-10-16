@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlayersController;
+use App\Http\Controllers\ClasificationController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/my-team/update', [PlayersController::class, 'update'])->name('players-titular-suplente.update');
 
     Route::get('/player/{id}', [PlayersController::class, 'getPlayerById'])->name('player');
+    
+    Route::get('/clasification', [ClasificationController::class, 'index'])->name('clasification');
 });
 
 require __DIR__.'/auth.php';

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('external_id')->nullable();
             $table->string('team_name')->default('Mi Equipo');
+            $table->string('role')->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

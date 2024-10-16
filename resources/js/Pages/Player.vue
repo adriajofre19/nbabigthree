@@ -1,6 +1,7 @@
 <script setup>
 import { ref, defineProps } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Head } from '@inertiajs/vue3';
 
 const props = defineProps({
     player: {
@@ -19,8 +20,11 @@ const formatDate = (date) => {
 </script>
 
 <template>
+  <Head>
+    <title>{{ player.name }}</title>
+  </Head>
   <AuthenticatedLayout>
-    <div class="min-h-screen bg-gradient-to-br from-blue-900 to-indigo-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen bg-gradient-to-br from-orange-400 to-orange-800 text-white py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto">
         <div class="bg-white/10 backdrop-blur-lg rounded-3xl overflow-hidden shadow-2xl">
           <div class="relative h-80 sm:h-96">
@@ -41,7 +45,7 @@ const formatDate = (date) => {
             <div class="grid gap-8 sm:grid-cols-2">
               <div>
                 <h2 class="text-2xl font-bold mb-4">Estadísticas de la Temporada</h2>
-                <div class="bg-white/5 rounded-lg p-4 grid grid-cols-2 gap-4">
+                <div class="bg-black/10 rounded-lg p-4 grid grid-cols-2 gap-4">
                   <div>
                     <div class="text-2xl font-bold">{{ player.totalGames }}</div>
                     <div class="text-sm text-gray-300">Partidos jugados</div>
@@ -75,7 +79,7 @@ const formatDate = (date) => {
             <div class="mt-8">
               <h2 class="text-2xl font-bold mb-4">Partidos Recientes</h2>
               <div class="grid gap-4 sm:grid-cols-2">
-                <div v-if="game != ''" v-for="game in games" :key="game.date" class="bg-white/10 backdrop-blur-lg rounded-lg overflow-hidden shadow-lg">
+                <div v-if="game != ''" v-for="game in games" :key="game.date" class="bg-black/10 backdrop-blur-lg rounded-lg overflow-hidden shadow-lg">
                   <div class="p-4">
                     <div class="flex justify-between items-center mb-4">
                       <div class="text-lg font-bold">{{ formatDate(game.date) }}</div>
