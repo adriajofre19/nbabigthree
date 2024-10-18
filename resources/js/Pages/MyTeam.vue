@@ -43,11 +43,13 @@ function openChangePlayerModal(playerId) {
     form.titular_id = playerId;
 
     selectedPlayer = props.players.find(player => player.id === playerId);
-    suplentOfSelectedPlayer = props.players.find(player => player.role === 'suplente' && player.position === selectedPlayer.position);
+    suplentOfSelectedPlayer = props.players.find(player => player.role === 'suplente');
     form.suplent_id = suplentOfSelectedPlayer.id;
     
     changePlayer.value = true;
 }
+
+const titulars = ref(props.players.filter(player => player.role === 'titular'));
 
 </script>
 <template>
@@ -83,33 +85,29 @@ function openChangePlayerModal(playerId) {
                             <div className="absolute inset-x-44 bottom-2 border-t-2 border-white rotate-180"></div>
                             <div className="absolute bottom-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full rotate-180"></div>
 
-                            <div v-for="player in players" :key="player.id">
+                            <div v-for="(player, index) in titulars" :key="player.id">
                                 
-                                <img @click="openChangePlayerModal(player.id)" v-if="player.role === 'titular' && player.position === 'Base'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[5rem] right-[3rem]" />
-                                <div v-if="player.role === 'titular' && player.position === 'Base'" className="absolute bottom-[3rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                <div v-if="player.role === 'titular' && player.position === 'Base'" className="absolute bottom-[8.5rem] right-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
+                                <img @click="openChangePlayerModal(player.id)" v-if="index === 1" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[7rem] right-[3rem]" />
+                                <div v-if="index === 1" className="absolute bottom-[5rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                                <div v-if="index === 1" className="absolute bottom-[10.5rem] right-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
                                 
-                                
-                                
-                                <img @click="openChangePlayerModal(player.id)" v-if="player.role === 'titular' && player.position === 'Escolta'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[8rem] left-[2rem]" />
-                                <div v-if="player.role === 'titular' && player.position === 'Escolta'" className="absolute bottom-[6rem] left-[2rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                <div v-if="player.role === 'titular' && player.position === 'Escolta'" className="absolute bottom-[11.5rem] left-[2rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
-                                
-                                
-                                <img @click="openChangePlayerModal(player.id)" v-if="player.role === 'titular' && player.position === 'Alero'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[14rem] right-[5rem]" />
-                                <div v-if="player.role === 'titular' && player.position === 'Alero'" className="absolute bottom-[12rem] right-[5rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                <div v-if="player.role === 'titular' && player.position === 'Alero'" className="absolute bottom-[17.5rem] right-[5rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
-                                
-                                
-                                <img @click="openChangePlayerModal(player.id)" v-if="player.role === 'titular' && player.position === 'Ala-Pivot'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[10rem] left-[5rem]" />
-                                <div v-if="player.role === 'titular' && player.position === 'Ala-Pivot'" className="absolute top-[13.6rem] left-[5rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                <div v-if="player.role === 'titular' && player.position === 'Ala-Pivot'" className="absolute top-[8rem] left-[5rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
-                                
-                                
-                                <img @click="openChangePlayerModal(player.id)" v-if="player.role === 'titular' && player.position === 'Pivot'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[5rem] right-[3rem]" />
-                                <div v-if="player.role === 'titular' && player.position === 'Pivot'" className="absolute top-[8.6rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                <div v-if="player.role === 'titular' && player.position === 'Pivot'" className="absolute top-[3rem] right-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
-                                
+                                <img @click="openChangePlayerModal(player.id)" v-if="index === 0" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[4.5rem] left-[3rem]" />
+                                <div v-if="index === 0" className="absolute top-[8rem] left-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                                <div v-if="index === 0" className="absolute top-[3rem] left-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
+
+                                <img @click="openChangePlayerModal(player.id)" v-if="index === 2" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[5rem] right-[3rem]" />
+                                <div v-if="index === 2" className="absolute top-[8.5rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                                <div v-if="index === 2" className="absolute top-[3.5rem] right-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
+
+                                <img @click="openChangePlayerModal(player.id)" v-if="index === 3" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[5rem] left-[3rem]" />
+                                <div v-if="index === 3" className="absolute bottom-[3rem] left-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                                <div v-if="index === 3" className="absolute bottom-[8.5rem] left-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
+
+                                <img @click="openChangePlayerModal(player.id)" v-if="index === 4" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[13.5rem] left-[10rem]" />
+                                <div v-if="index === 4" className="absolute top-[17rem] left-[10rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
+                                <div v-if="index === 4" className="absolute top-[12rem] left-[10rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
+
+
                             </div> 
                         </div>
                     </div>
@@ -131,8 +129,8 @@ function openChangePlayerModal(playerId) {
         <div class="sm:w-3/5 w-full justify-center">
 
 
-            <section class="antialiased  text-gray-600 px-4">
-                <div class="flex flex-col justify-center h-full">
+            <section class="antialiased text-gray-600 px-4">
+                <div class="hidden sm:flex flex-col justify-center h-full">
                     <!-- Table -->
                     <div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8">
                         <header class="px-5 py-4 border-b border-gray-100">
