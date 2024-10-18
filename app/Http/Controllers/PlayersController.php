@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Player;
 use App\Models\User;
@@ -14,7 +15,7 @@ class PlayersController extends Controller
 {
     public function index(Request $request)
     {
-        // Get all players with id of the authenticated user and get her stats from the API
+        $user = User::find(auth()->id());
 
         $players = Player::where('user_id', auth()->id())->get();
 
@@ -22,12 +23,12 @@ class PlayersController extends Controller
 
         foreach ($players as $player) {
             $player->stats = Player::getInfoFromThisPlayerByThisWeek($player->player_code);
-            
-            
+       
         }
 
         return Inertia::render('MyTeam', [
             'players' => $players,
+            'user' => $user,
         ]);
     }
 

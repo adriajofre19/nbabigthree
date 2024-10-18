@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Head } from '@inertiajs/vue3';
 
 const props = defineProps({
   users: {
@@ -11,6 +12,9 @@ const props = defineProps({
 </script>
 
 <template>
+    <Head>
+        <title>Clasificación</title>
+    </Head>
   <AuthenticatedLayout>
   <section class="antialiased text-gray-600 px-4 bg-gradient-to-br from-orange-400 to-orange-800 h-screen">
                 <div class="flex flex-col">

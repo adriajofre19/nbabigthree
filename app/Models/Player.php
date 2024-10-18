@@ -60,8 +60,7 @@ class Player extends Model
     public static function getInfoFromThisPlayerByThisWeek($player_code){
         $stats = self::getAllInfoFromTheApi();
 
-        $today = '2024-01-25';
-        //$today = date('Y-m-d');
+        $today = date('Y-m-d');
         $startWeek = date('Y-m-d', strtotime('last monday', strtotime($today)));
         $endWeek = date('Y-m-d', strtotime('next sunday', strtotime($today)));
 
