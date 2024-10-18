@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\ClasificationController;
+use App\Http\Controllers\CrudPlayersController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -69,6 +70,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/player/{id}', [PlayersController::class, 'getPlayerById'])->name('player');
     
     Route::get('/clasification', [ClasificationController::class, 'index'])->name('clasification');
+
+    Route::get('/crud-players', [CrudPlayersController::class, 'index'])->name('crud-players');
+
+    Route::post('/crud-players/create', [CrudPlayersController::class, 'create'])->name('crud-players.create');
+    Route::post('/crud-players/update', [CrudPlayersController::class, 'update'])->name('crud-players.update');
+    Route::delete('/crud-players/delete', [CrudPlayersController::class, 'delete'])->name('crud-players.delete');
+    Route::post('/crud-players/createFromCsvFile', [CrudPlayersController::class, 'createFromCsvFile'])->name('crud-players.createFromCsvFile');
 });
 
 require __DIR__.'/auth.php';

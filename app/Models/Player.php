@@ -24,6 +24,8 @@ class Player extends Model
         'price',
         'role',
         'stats',
+        'player_code',
+        'user_id',
     ];
 
     protected $casts = [

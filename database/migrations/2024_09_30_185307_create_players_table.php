@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('avatar');
             $table->string('position');
             $table->string('team');
-            $table->integer('price');
             $table->string('role');
             $table->json('stats')->nullable();
             $table->foreignId('user_id')->nullable()->index();
