@@ -75,146 +75,8 @@ const getPlayerPosition = (index) => {
 <Head title="Mi Equipo" />
 
 <AuthenticatedLayout>
-    <div class="min-h-screen bg-gradient-to-br from-orange-400 to-orange-800">
-    <div class="flex">
-        <div class="sm:w-3/10">
-            <div className="p-8 flex items-center justify-center ">
-                <div className="bg-gray-700 sm:p-4">
-                    <div className="border-2 border-white ">
-                        <div className="relative w-80 sm:w-96 h-[32rem] bg-gray-700 ">
-                            <div className="absolute inset-0 flex items-center justify-center ">
-                                <div className="w-20 h-20 border-2 border-white rounded-full"></div>
-                            </div>
-            
-                            <div className="absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-2 border-white rounded-t-full overflow-hidden rotate-180"></div>
-                            <div className="absolute bottom-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-2 border-white rounded-t-full overflow-hidden"></div>
-
-                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-2 border-white"></div>
-                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-2 border-white"></div>
-            
-                            <div className="absolute top-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-white rounded-full"></div>
-                            <div className="absolute bottom-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-white rounded-full rotate-180"></div>
-            
-                            <div className="absolute inset-x-0 top-1/2 border-t-2 border-white"></div>
-            
-                            <div className="absolute inset-x-44 top-2 border-t-2 border-white"></div>
-                            <div className="absolute top-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full"></div>
-                            
-                            <div className="absolute inset-x-44 bottom-2 border-t-2 border-white rotate-180"></div>
-                            <div className="absolute bottom-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full rotate-180"></div>
-
-                            <div v-for="(player, index) in titulars" :key="player.id">
-                                
-                                <img @click="openChangePlayerModal(player.id)" v-if="index === 1" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[7rem] right-[3rem]" />
-                                <div v-if="index === 1" className="absolute bottom-[5rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                <div v-if="index === 1" className="absolute bottom-[10.5rem] right-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
-                                
-                                <img @click="openChangePlayerModal(player.id)" v-if="index === 0" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[4.5rem] left-[3rem]" />
-                                <div v-if="index === 0" className="absolute top-[8rem] left-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                <div v-if="index === 0" className="absolute top-[3rem] left-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
-
-                                <img @click="openChangePlayerModal(player.id)" v-if="index === 2" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[5rem] right-[3rem]" />
-                                <div v-if="index === 2" className="absolute top-[8.5rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                <div v-if="index === 2" className="absolute top-[3.5rem] right-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
-
-                                <img @click="openChangePlayerModal(player.id)" v-if="index === 3" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[5rem] left-[3rem]" />
-                                <div v-if="index === 3" className="absolute bottom-[3rem] left-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                <div v-if="index === 3" className="absolute bottom-[8.5rem] left-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
-
-                                <img @click="openChangePlayerModal(player.id)" v-if="index === 4" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[13.5rem] left-[10rem]" />
-                                <div v-if="index === 4" className="absolute top-[17rem] left-[10rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                <div v-if="index === 4" className="absolute top-[12rem] left-[10rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center">{{ player.stats }}</div>
 
 
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            
-            <div class="flex justify-center ">
-                <div v-for="player in players" :key="player.id" >
-                    <div v-if="player.role === 'suplente'" class="text-center w-10 bg-red-400 py-1">{{ player.stats }}</div>
-                    <img v-if="player.role === 'suplente'" :src="player.avatar" class="w-20 h-auto mx-auto "  />
-                    <div v-if="player.role === 'suplente'" class="text-center bg-gray-400 py-1">{{ getFirstName(player.name) }}</div>
-                </div>
-            </div>
-        </div>
-        <div class="sm:w-7/10 w-full justify-center">
-
-
-            <section class="antialiased text-gray-600 px-4">
-                <div class="hidden sm:flex flex-col justify-center h-full">
-                    <!-- Table -->
-                    <div class="w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8">
-                        <header class="px-5 py-4 border-b border-gray-100">
-                            <h2 class="font-semibold text-gray-800">Jugadors</h2>
-                        </header>
-                        <div class="p-3">
-                            <div class="overflow-x-auto">
-                                <table class="table-auto w-full">
-                                    <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                                        <tr>
-                                            <th class="p-2 whitespace-nowrap">
-                                                <div class="font-semibold text-left">Nombre</div>
-                                            </th>
-                                            <th class="p-2 whitespace-nowrap">
-                                                <div class="font-semibold text-left">Posicion</div>
-                                            </th>
-                                            <th class="p-2 whitespace-nowrap">
-                                                <div class="font-semibold text-left">T/S</div>
-                                            </th>
-                                            <th class="p-2 whitespace-nowrap">
-                                                <div class="font-semibold text-center">Team</div>
-                                            </th>
-                                            <th class="p-2 whitespace-nowrap">
-                                                <div class="font-semibold text-center">Puntos</div>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="text-sm divide-y divide-gray-100">
-                                        <tr v-for="player in players" :key="player.id">
-                                            <td class="p-2 whitespace-nowrap">
-                                                <div class="flex items-center">
-                                                    
-                                                        <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img :src="player.avatar" width="40" height="40" alt="Alex Shatov"></div>
-                                                        <div class="font-medium text-gray-800"><a :href="'/player/'+player.id">{{ player.name }}</a></div>
-                                                    
-                                                </div>
-                                            </td>
-                                            <td class="p-2 whitespace-nowrap">
-                                                <div class="text-left">{{ player.position }}</div>
-                                            </td>
-                                            <td class="p-2 whitespace-nowrap">
-                                                <div v-if="player.role === 'titular'" class="text-left font-medium text-green-500">TITULAR</div>
-                                                <div v-else class="text-left font-medium text-red-500">SUPLENTE</div>
-                                            </td>
-                                            <td class="p-2 whitespace-nowrap">
-                                                <div class="text-left">{{ player.team }}</div>
-                                            </td>
-                                            <td class="p-2 whitespace-nowrap">
-                                                <div class="text-left">{{ player.stats }}</div>
-                                            </td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-        </div>
-    </div>
-</div>
-</AuthenticatedLayout>
 
 <Modal :show="changePlayer" @close="changePlayer = false">
     <form @submit.prevent="submit">
@@ -314,7 +176,7 @@ const getPlayerPosition = (index) => {
                                 </div>
                             </div>
                     
-                            <div class="col-span-full overflow-hidden relative rounded-xl bg-white border border-gray-200 justify-center">
+                            <div class="col-span-full overflow-hidden relative rounded-xl bg-white border border-gray-200 sm:justify-center">
                                 <div class="flex justify-center">
                                     <div v-for="player in players" :key="player.id" class="mt-4">
                                         <div v-if="player.role === 'suplente'" class="text-center w-10 bg-red-400 py-1 text-white rounded-lg">{{ player.stats }}</div>
@@ -495,4 +357,5 @@ const getPlayerPosition = (index) => {
   </section>
 </template>
 
+</AuthenticatedLayout>
 </template>
