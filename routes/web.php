@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\ClasificationController;
 use App\Http\Controllers\CrudPlayersController;
+use App\Http\Controllers\CrudUsersController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -75,11 +76,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-team/{id}', [PlayersController::class, 'getTeamFromThePlayer'])->name('get-team');
 
     Route::get('/crud-players', [CrudPlayersController::class, 'index'])->name('crud-players');
-
     Route::post('/crud-players/create', [CrudPlayersController::class, 'create'])->name('crud-players.create');
     Route::post('/crud-players/update', [CrudPlayersController::class, 'update'])->name('crud-players.update');
     Route::delete('/crud-players/delete', [CrudPlayersController::class, 'delete'])->name('crud-players.delete');
     Route::post('/crud-players/createFromCsvFile', [CrudPlayersController::class, 'createFromCsvFile'])->name('crud-players.createFromCsvFile');
+
+    Route::get('/crud-users', [CrudUsersController::class, 'index'])->name('crud-users');
+    Route::delete('/crud-users/delete', [CrudUsersController::class, 'delete'])->name('crud-users.delete');
 });
 
 require __DIR__.'/auth.php';

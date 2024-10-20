@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { defineProps } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Head } from '@inertiajs/vue3';
 
 const props = defineProps({
     user: Object,
@@ -22,7 +23,7 @@ const titulars = ref(players.value.filter(player => player.role === 'titular'));
 
 <template>
 
-    <Head title="Mi Equipo" />
+    <Head :title="user.team_name" />
     
     <AuthenticatedLayout>
     <section class="bg-gradient-to-br from-orange-400 to-orange-800 h-full">
