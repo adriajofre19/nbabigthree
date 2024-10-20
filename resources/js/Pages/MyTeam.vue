@@ -145,63 +145,7 @@ const getPlayerPosition = (index) => {
             </div>
         </div>
         
-        <div class="sm:w-7/10 w-full justify-center">
-
-
-            <div class="col-span-full lg:col-span-4 overflow-hidden relative p-8 rounded-xl bg-white border border-gray-200">
-                        <div class="w-full max-w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-            <header class="px-5 py-4 border-b border-gray-100">
-                <h2 class="font-semibold text-gray-800">{{ props.user.team_name }}</h2>
-            </header>
-            <div class="p-3">
-                <div class="overflow-x-auto">
-                    <table class="table-auto w-full">
-                        <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                            <tr>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Nombre</div>
-                                </th>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Posición</div>
-                                </th>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-left">Rol</div>
-                                </th>
-                                <th class="p-2 whitespace-nowrap">
-                                    <div class="font-semibold text-center">Puntos</div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm divide-y divide-gray-100">
-                            <tr v-for="player in players" :key="player.id">
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img class="rounded-full" :src="player.avatar" width="40" height="40" alt="Alex Shatov"></div>
-                                        <div class="font-medium text-gray-800">{{ player.name }}</div>
-                                    </div>
-                                </td>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left">{{ player.position }}</div>
-                                </td>
-                                <td class="p-2 whitespace-nowrap">
-                                    <span v-if="player.role === 'titular'" class="text-left font-medium bg-green-500 rounded-md p-1 text-white">TITULAR</span>
-                                    <span v-else class="text-left font-medium bg-red-500 rounded-md p-1 text-white">SUPLENTE</span>
-                                </td>
-                                <td class="p-2 whitespace-nowrap">
-                                    <div class="text-lg text-center">{{ player.stats }}</div>
-                                </td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-                    </div>
-
-
-
-        </div>
+        
     </div>
 </div>
 </AuthenticatedLayout>
