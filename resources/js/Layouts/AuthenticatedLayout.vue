@@ -81,12 +81,12 @@ const page = usePage();
     </header>
 
     <!-- Page Content -->
-    <main class="flex-grow">
+    <main class="flex-grow pb-16 sm:pb-0">
       <slot />
     </main>
 
     <!-- Mobile Bottom Navigation -->
-    <nav class="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+    <nav class="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
       <div class="flex justify-around">
         
         <Link
