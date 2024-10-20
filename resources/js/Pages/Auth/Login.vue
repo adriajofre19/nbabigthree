@@ -1,8 +1,11 @@
 <script setup>
-
+import { Head } from '@inertiajs/vue3';
 </script>
 
 <template>
+    <Head>
+        <title>Login</title>
+    </Head>
 <div class="bg-gray-900">
         <div class="flex justify-center h-screen">
             <div class="hidden bg-cover lg:block lg:w-2/3" style="background-image: url(https://images.unsplash.com/photo-1518407613690-d9fc990e795f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D)">

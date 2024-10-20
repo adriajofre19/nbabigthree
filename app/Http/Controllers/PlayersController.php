@@ -23,12 +23,18 @@ class PlayersController extends Controller
 
         foreach ($players as $player) {
             $player->stats = Player::getInfoFromThisPlayerByThisWeek($player->player_code);
-       
+        }
+
+        $titulars = Player::where('user_id', auth()->id())->where('role', 'titular')->get();
+
+        foreach ($titulars as $titular) {
+            $titular->stats = Player::getInfoFromThisPlayerByThisWeek($titular->player_code);
         }
 
         return Inertia::render('MyTeam', [
             'players' => $players,
             'user' => $user,
+            'titulars' => $titulars,
         ]);
     }
 
@@ -49,7 +55,8 @@ class PlayersController extends Controller
             'role' => 'titular',
         ]);
 
-        
+        return redirect()->back();
+
     }
 
     public function getPlayerById($id)
@@ -88,6 +95,36 @@ class PlayersController extends Controller
         ]);
 
         
+    }
+
+    public function getTeamFromThePlayer($id)
+    {
+        $user = User::find($id);
+
+        $players = Player::where('user_id', $id)->get();
+
+        $stats = Player::getAllInfoFromTheApi();
+
+        foreach ($players as $player) {
+            $player->stats = Player::getInfoFromThisPlayerByThisWeek($player->player_code);
+       
+        }
+
+        return Inertia::render('TeamFromPlayer', [
+            'players' => $players,
+            'user' => $user,
+        ]);
+    }
+
+    public function updateTeamName(Request $request)
+    {
+        $user = User::find(auth()->id());
+
+        $user->update([
+            'team_name' => $request->team_name,
+        ]);
+
+        return redirect()->back();
     }
 
     

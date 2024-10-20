@@ -27,6 +27,7 @@ const props = defineProps({
                                 <table class="table-auto w-full">
                                     <tbody class="text-sm divide-y divide-gray-100">
                                         <tr v-for="(user, index) in users" :key="user.id">
+                                            
                                           <td class="p-2 whitespace-nowrap">
                                                 <div class="text-center text-xl"># {{ index + 1 }}</div>
                                             </td>
@@ -34,7 +35,16 @@ const props = defineProps({
                                                 <div class="flex items-center">
                                                     
                                                         <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3 "><img :src="user.avatar" width="40" height="40" alt="Alex Shatov" class="rounded-full"></div>
-                                                        <div class="font-medium text-gray-800">{{ user.name }}</div>
+                                                        
+
+                                                        <div class="flex flex-col">
+                                                            <a :href="'/get-team/'+user.id">
+                                                            <div class="font-medium text-gray-800">{{ user.name }}</div>
+                                                            <div class="text-md text-gray-500">{{ user.team_name }}</div>
+                                                        </a>
+                                                        </div>
+
+                                                        
                                                     
                                                 </div>
                                             </td>
@@ -44,6 +54,7 @@ const props = defineProps({
                                             <td class="p-2 whitespace-nowrap">
                                                 <div class="text-left">{{ user.stats }}</div>
                                             </td>
+                                        
                                         </tr>
                                         
                                     </tbody>

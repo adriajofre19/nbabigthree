@@ -66,10 +66,13 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/my-team', [PlayersController::class, 'index'])->name('my-team');
     Route::post('/my-team/update', [PlayersController::class, 'update'])->name('players-titular-suplente.update');
+    Route::post('/update-team-name', [PlayersController::class, 'updateTeamName'])->name('team-name.update');
 
     Route::get('/player/{id}', [PlayersController::class, 'getPlayerById'])->name('player');
     
     Route::get('/clasification', [ClasificationController::class, 'index'])->name('clasification');
+
+    Route::get('/get-team/{id}', [PlayersController::class, 'getTeamFromThePlayer'])->name('get-team');
 
     Route::get('/crud-players', [CrudPlayersController::class, 'index'])->name('crud-players');
 
