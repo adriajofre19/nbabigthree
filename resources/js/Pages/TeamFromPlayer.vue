@@ -26,7 +26,7 @@ const titulars = ref(players.value.filter(player => player.role === 'titular'));
     <Head :title="user.team_name" />
     
     <AuthenticatedLayout>
-    <section class="bg-gradient-to-br from-orange-400 to-orange-800 h-full">
+    <section>
         <div class="py-16">
             <div class="mx-auto sm:px-6 max-w-full text-gray-500">
                 <div class="relative">

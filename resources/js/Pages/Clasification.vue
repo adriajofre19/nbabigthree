@@ -16,7 +16,7 @@ const props = defineProps({
         <title>Clasificación</title>
     </Head>
   <AuthenticatedLayout>
-  <section class="antialiased text-gray-600 px-4 bg-gradient-to-br from-orange-400 to-orange-800 h-screen">
+  <section class="antialiased text-gray-600 px-4">
                 <div class="flex flex-col">
                     <div class="sm:w-2/3 w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8">
                         <header class="px-5 py-4 border-b border-gray-100">

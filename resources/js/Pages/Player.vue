@@ -24,7 +24,7 @@ const formatDate = (date) => {
     <title>{{ player.name }}</title>
   </Head>
   <AuthenticatedLayout>
-    <div class="min-h-screen bg-gradient-to-br from-orange-400 to-orange-800 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen text-white py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto">
         <div class="bg-white/10 backdrop-blur-lg rounded-3xl overflow-hidden shadow-2xl">
           <div class="relative h-80 sm:h-96">

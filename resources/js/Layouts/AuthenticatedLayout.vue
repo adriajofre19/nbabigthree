@@ -8,7 +8,7 @@ const page = usePage();
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-100 flex flex-col">
+  <div class="min-h-screen bg-gradient-to-br from-orange-400 to-orange-800 flex flex-col">
     <!-- Desktop Navigation (hidden on mobile) -->
     <nav class="bg-white border-b border-gray-100 hidden sm:block">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
