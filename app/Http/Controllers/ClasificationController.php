@@ -23,7 +23,7 @@ class ClasificationController extends Controller
                 $player->stats = Player::getPlayerById($player->player_code);
     
                 // Calcular los puntos totales del jugador
-                $player->total_points = collect($player->stats)->sum('game_score');
+                $player->total_points = Player::getPointsFromThisPlayer($player->player_code);
     
                 // Agregar los puntos del jugador al total del usuario
                 $user->total_points += $player->total_points;

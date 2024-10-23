@@ -22,9 +22,10 @@ class PlayersController extends Controller
         $stats = Player::getAllInfoFromTheApi();
 
         foreach ($players as $player) {
-            $player->stats = Player::getInfoFromThisPlayerByThisWeek($player->player_code);
+            $player->stats = Player::getPointsFromThisPlayer($player->player_code);
         }
 
+        
         $titulars = Player::where('user_id', auth()->id())->where('role', 'titular')->get();
 
         foreach ($titulars as $titular) {
@@ -106,7 +107,7 @@ class PlayersController extends Controller
         $stats = Player::getAllInfoFromTheApi();
 
         foreach ($players as $player) {
-            $player->stats = Player::getInfoFromThisPlayerByThisWeek($player->player_code);
+            $player->stats = Player::getPointsFromThisPlayer($player->player_code);
        
         }
 

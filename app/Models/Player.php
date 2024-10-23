@@ -46,6 +46,30 @@ class Player extends Model
         return json_decode($stats, true);
     }
 
+    public static function getPointsFromThisPlayer($player_code)
+{
+    $stats = self::getAllInfoFromTheApi();
+    $totalPoints = 0;
+
+    foreach ($stats as $game) {
+        if ($game['player'] === $player_code) {
+            $totalPoints += $game['field_goals'] * 2; // Cada field_goal suma 2 puntos
+            $totalPoints -= $game['field_goals_attempted']; // Cada field_goal_attempted resta 1 punto
+            $totalPoints += $game['three_point_field_goals']; // Cada three_point_field_goal suma 1 punto
+            $totalPoints += $game['free_throws']; // Cada free_throw suma 1 punto
+            $totalPoints -= $game['free_throws_attempted']; // Cada free_throw_attempted resta 1 punto
+            $totalPoints += $game['total_rebounds']; // Cada total_rebound suma 1 punto
+            $totalPoints += $game['assists'] * 2; // Cada assist suma 2 puntos
+            $totalPoints += $game['steals'] * 4; // Cada steal suma 4 puntos
+            $totalPoints += $game['blocks'] * 4; // Cada block suma 4 puntos
+            $totalPoints -= $game['turnovers'] * 2; // Cada turnover resta 2 puntos
+            $totalPoints += $game['points']; // Cada punto suma 1 punto
+        }
+    }
+
+    return $totalPoints;
+}
+
     public static function getInfoFromThisPlayer($player_code)
     {
         $stats = self::getAllInfoFromTheApi();
@@ -58,13 +82,14 @@ class Player extends Model
     }
 
     public static function getInfoFromThisPlayerByThisWeek($player_code){
+        
         $stats = self::getAllInfoFromTheApi();
 
         $today = date('Y-m-d');
         $startWeek = date('Y-m-d', strtotime('last monday', strtotime($today)));
         $endWeek = date('Y-m-d', strtotime('next sunday', strtotime($today)));
 
-        $stats = collect($stats)->where('player', $player_code)->whereBetween('date', [$startWeek, $endWeek]);
+        $stats = collect($stats)->where('player', $player_code)->where('date', '>=', $startWeek)->where('date', '<=', $endWeek);
 
         $totalPoints = $stats->sum('game_score');
 
