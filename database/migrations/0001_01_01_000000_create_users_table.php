@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('external_id')->nullable();
             $table->string('team_name')->default('Mi Equipo');
             $table->string('role')->default('user');
+            $table->integer('points')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
