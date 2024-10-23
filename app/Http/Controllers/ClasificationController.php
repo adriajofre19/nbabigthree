@@ -36,10 +36,10 @@ class ClasificationController extends Controller
         }
 
         // order by total points
-        $users = $users->sortByDesc('total_points');
+        $usersOrder = $users->sortByDesc('total_points');
 
         return Inertia::render('Clasification', [
-            'users' => $users,
+            'usersOrder' => $usersOrder,
         ]);
 
 

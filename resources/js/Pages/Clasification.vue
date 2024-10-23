@@ -5,17 +5,13 @@ import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 const props = defineProps({
-  users: {
+  usersOrder: {
     type: Array,
     required: true
   }
 });
 
-const users = ref(props.users);
-
-users.value = users.value.sort((a, b) => b.total_points - a.total_points);
-
-console.log(users.value);
+console.log(props.usersOrder);
 
 </script>
 
@@ -34,10 +30,10 @@ console.log(users.value);
                             <div class="overflow-x-auto">
                                 <table class="table-auto w-full">
                                     <tbody class="text-sm divide-y divide-gray-100">
-                                        <tr v-for="(user, index) in users" :key="user.id">
+                                        <tr v-for="user in usersOrder" :key="user.id">
                                             
                                           <td class="p-2 whitespace-nowrap">
-                                                <div class="text-center text-xl"># {{ index + 1 }}</div>
+                                                <div class="text-center text-xl"></div>
                                             </td>
                                             <td class="p-2 whitespace-nowrap">
                                                 <div class="flex items-center">
