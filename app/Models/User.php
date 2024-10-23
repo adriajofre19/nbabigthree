@@ -26,6 +26,7 @@ class User extends Authenticatable
         'avatar',
         'team_name',
         'role',
+        'points',
     ];
 
     /**

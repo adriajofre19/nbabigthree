@@ -84,8 +84,6 @@ class PlayersController extends Controller
             }
         }
 
-        
-
         $player->totalPoints = $totalPoints;
         $player->totalGames = $totalGames;
         $player->totalWins = $totalWins;

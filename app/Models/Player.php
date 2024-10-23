@@ -109,23 +109,6 @@ public static function getPointsFromThisPlayerOnThisWeek($player_code)
         return $totalPoints;
     }
 
-    public static function getInfoFromThisPlayerByThisWeek($player_code){
-        
-        $stats = self::getAllInfoFromTheApi();
-
-        $today = date('Y-m-d');
-        $startWeek = date('Y-m-d', strtotime('last monday', strtotime($today)));
-        $endWeek = date('Y-m-d', strtotime('next sunday', strtotime($today)));
-
-        $stats = collect($stats)->where('player', $player_code)->whereBetween('date', [$startWeek, $endWeek]);
-
-        dd($stats);
-
-        $totalPoints = $stats->sum('game_score');
-
-        return $totalPoints;
-
-    }
 
     public static function getPlayerById($player_code)
     {
