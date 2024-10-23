@@ -9,6 +9,8 @@ const props = defineProps({
     required: true
   }
 });
+
+console.log(props.users);
 </script>
 
 <template>
