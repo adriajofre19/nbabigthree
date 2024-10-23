@@ -29,7 +29,7 @@ class PlayersController extends Controller
         $titulars = Player::where('user_id', auth()->id())->where('role', 'titular')->get();
 
         foreach ($titulars as $titular) {
-            $titular->stats = Player::getInfoFromThisPlayerByThisWeek($titular->player_code);
+            $titular->stats = Player::getPointsFromThisPlayerOnThisWeek($titular->player_code);
         }
 
         return Inertia::render('MyTeam', [
@@ -107,7 +107,7 @@ class PlayersController extends Controller
         $stats = Player::getAllInfoFromTheApi();
 
         foreach ($players as $player) {
-            $player->stats = Player::getPointsFromThisPlayer($player->player_code);
+            $player->stats = Player::getPointsFromThisPlayerOnThisWeek($player->player_code);
        
         }
 
