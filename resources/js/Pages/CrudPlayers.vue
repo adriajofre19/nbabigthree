@@ -134,6 +134,29 @@ const submitCsvForm = () => {
   })
 }
 
+const exportCsv = () => {
+  const headers = ['Nombre', 'Equipo', 'Posición', 'Rol', 'Usuario', 'Avatar', 'Código del Jugador'];
+  
+  const rows = playersList.value.filter(player => player.role === 'titular').map(player => [
+    player.name,
+    player.team,
+    player.position,
+    player.role,
+    getUserById(player.user_id).name,
+    player.avatar,
+    player.player_code
+  ]);
+
+  let csvContent = 'data:text/csv;charset=utf-8,' + [headers, ...rows].map(e => e.join(';')).join('\n');
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement('a');
+  link.setAttribute('href', encodedUri);
+  link.setAttribute('download', 'players.csv');
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 </script>
 
 <template>
@@ -148,7 +171,7 @@ const submitCsvForm = () => {
         <input v-model="search" type="text" class="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Buscar jugador...">
       </div>
 
-<div class="mt-8">
+<div class="mt-8 mb-8">
   <h2 class="text-xl font-bold mb-4">Import Players from CSV</h2>
   <form @submit.prevent="submitCsvForm" enctype="multipart/form-data">
     <div class="flex items-center space-x-4">
@@ -165,8 +188,14 @@ const submitCsvForm = () => {
       >
         {{ csvForm.processing ? 'Importing...' : 'Import CSV' }}
       </button>
+
+      
+
     </div>
   </form>
+  <button @click="exportCsv" class="bg-black hover:bg-gray-900 text-white font-bold py-2 px-4 rounded mt-4">
+    Exportar CSV
+  </button>
 </div>
 
       <table class="min-w-full bg-white">
