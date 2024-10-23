@@ -2,17 +2,13 @@
 import { defineProps } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import { ref } from 'vue';
 
 const props = defineProps({
-  usersOrder: {
+  users: {
     type: Array,
     required: true
   }
 });
-
-console.log(props.usersOrder);
-
 </script>
 
 <template>
@@ -30,10 +26,10 @@ console.log(props.usersOrder);
                             <div class="overflow-x-auto">
                                 <table class="table-auto w-full">
                                     <tbody class="text-sm divide-y divide-gray-100">
-                                        <tr v-for="user in usersOrder" :key="user.id">
+                                        <tr v-for="(user, index) in users" :key="user.id">
                                             
                                           <td class="p-2 whitespace-nowrap">
-                                                <div class="text-center text-xl"></div>
+                                                <div class="text-center text-xl"># {{ index + 1 }}</div>
                                             </td>
                                             <td class="p-2 whitespace-nowrap">
                                                 <div class="flex items-center">

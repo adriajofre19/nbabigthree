@@ -13,35 +13,27 @@ class ClasificationController extends Controller
 {
     public function index(Request $request) {
         
-        $users = User::all();
+        $users = User::with('players')->get();
 
         foreach ($users as $user) {
-
-            $user->players = Player::where('user_id', $user->id)->get();
-
             $user->total_points = 0;
-            
+    
             foreach ($user->players as $player) {
-                
+                // Obtener las estadísticas del jugador
                 $player->stats = Player::getPlayerById($player->player_code);
-
-                $player->total_points = 0;
-
-                foreach ($player->stats as $stat) {
-                    $player->total_points += $stat['game_score'];
-                }
-
+    
+                // Calcular los puntos totales del jugador
+                $player->total_points = collect($player->stats)->sum('game_score');
+    
+                // Agregar los puntos del jugador al total del usuario
                 $user->total_points += $player->total_points;
             }
         }
 
-        // order by total points
-        $users = $users->sortByDesc('total_points');
-
-        dd($users);
+        $sortedUsers = $users->sortByDesc('total_points');
 
         return Inertia::render('Clasification', [
-            'users' => $users,
+            'users' => $sortedUsers->values(), // Usamos values() para restablecer las claves de colección
         ]);
 
 
