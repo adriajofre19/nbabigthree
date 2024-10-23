@@ -11,7 +11,11 @@ const props = defineProps({
   }
 });
 
-console.log(props.users);
+const users = ref(props.users);
+
+users.value = users.value.sort((a, b) => b.total_points - a.total_points);
+
+console.log(users.value);
 
 </script>
 
@@ -71,9 +75,3 @@ console.log(props.users);
 
   </AuthenticatedLayout>
 </template>
-
-<style scoped>
-.text-shadow {
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-</style>
