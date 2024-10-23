@@ -16,8 +16,8 @@ class ClasificationController extends Controller
         $users = User::all();
 
         foreach ($users as $user) {
-        
-            $user->players = Player::where('user_id', $user->id)->where('role', 'titular')->get();
+
+            $user->players = Player::where('user_id', $user->id)->get();
 
             $user->total_points = 0;
             
@@ -28,7 +28,7 @@ class ClasificationController extends Controller
                 $player->total_points = 0;
 
                 foreach ($player->stats as $stat) {
-                    $player->total_points += $stat['points'];
+                    $player->total_points += $stat['game_score'];
                 }
 
                 $user->total_points += $player->total_points;
@@ -37,6 +37,8 @@ class ClasificationController extends Controller
 
         // order by total points
         $users = $users->sortByDesc('total_points');
+
+        dd($users);
 
         return Inertia::render('Clasification', [
             'users' => $users,

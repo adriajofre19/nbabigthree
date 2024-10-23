@@ -2,6 +2,7 @@
 import { defineProps } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 const props = defineProps({
   users: {
@@ -11,6 +12,7 @@ const props = defineProps({
 });
 
 console.log(props.users);
+
 </script>
 
 <template>

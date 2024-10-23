@@ -52,7 +52,7 @@ class Player extends Model
         
         $stats = collect($stats)->where('player', $player_code);
 
-        $totalPoints = $stats->sum('points');
+        $totalPoints = $stats->sum('game_score');
 
         return $totalPoints;
     }
@@ -66,7 +66,7 @@ class Player extends Model
 
         $stats = collect($stats)->where('player', $player_code)->whereBetween('date', [$startWeek, $endWeek]);
 
-        $totalPoints = $stats->sum('points');
+        $totalPoints = $stats->sum('game_score');
 
         return $totalPoints;
 
@@ -78,7 +78,7 @@ class Player extends Model
         
         $stats = collect($stats)->where('player', $player_code);
 
-        $totalPoints = $stats->sum('points');
+        $totalPoints = $stats->sum('game_score');
 
         return $stats;
     }
