@@ -5,6 +5,7 @@ use App\Http\Controllers\PlayersController;
 use App\Http\Controllers\ClasificationController;
 use App\Http\Controllers\CrudPlayersController;
 use App\Http\Controllers\CrudUsersController;
+use App\Http\Controllers\NotificationsController;
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -74,6 +75,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/clasification', [ClasificationController::class, 'index'])->name('clasification');
 
     Route::get('/get-team/{id}', [PlayersController::class, 'getTeamFromThePlayer'])->name('get-team');
+
+    Route::get('/notifications', [NotificationsController::class, 'index'])->name('notifications');
+    Route::post('/create-notification-to-trade', [NotificationsController::class, 'create'])->name('create-notification-to-trade.create');
+    Route::post('/notifications/handle-exchange', [NotificationsController::class, 'handleExchange'])->name('notifications.handle-exchange');
 
     Route::get('/crud-players', [CrudPlayersController::class, 'index'])->name('crud-players');
     Route::post('/crud-players/create', [CrudPlayersController::class, 'create'])->name('crud-players.create');

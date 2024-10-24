@@ -17,15 +17,12 @@ class PlayersController extends Controller
     {
         $user = User::find(auth()->id());
 
-        $players = Player::where('user_id', auth()->id())->get();
-
-        $stats = Player::getAllInfoFromTheApi();
+        $players = Player::where('user_id', auth()->id())->get();      
 
         foreach ($players as $player) {
-            $player->stats = Player::getPointsFromThisPlayer($player->player_code);
+            $player->stats = Player::getPointsFromThisPlayerOnThisWeek($player->player_code);
         }
 
-        
         $titulars = Player::where('user_id', auth()->id())->where('role', 'titular')->get();
 
         foreach ($titulars as $titular) {
@@ -104,14 +101,22 @@ class PlayersController extends Controller
 
         $stats = Player::getAllInfoFromTheApi();
 
+        
+
         foreach ($players as $player) {
             $player->stats = Player::getPointsFromThisPlayerOnThisWeek($player->player_code);
        
         }
 
+        $AuthenticatedUser = Auth::user();
+
+        $playersofAuthenticatedUser = Player::where('user_id', $AuthenticatedUser->id)->get();
+
         return Inertia::render('TeamFromPlayer', [
             'players' => $players,
             'user' => $user,
+            'AuthenticatedUser' => $AuthenticatedUser,
+            'playersofAuthenticatedUser' => $playersofAuthenticatedUser,
         ]);
     }
 

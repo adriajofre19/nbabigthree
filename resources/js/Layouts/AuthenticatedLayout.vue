@@ -7,6 +7,8 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 
 const showingNavigationDropdown = ref(false);
 const page = usePage();
+
+console.log(page.props);
 </script>
 
 <template>
@@ -38,6 +40,13 @@ const page = usePage();
                 :class="route().current('clasification') ? 'border-indigo-400 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
               >
                 Clasificación por puntos
+              </Link>
+              <Link
+                :href="route('notifications')"
+                class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out"
+                :class="route().current('notifications') ? 'border-indigo-400 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+              >
+                Notificaciones
               </Link>
             </div>
           </div>
@@ -100,9 +109,9 @@ const page = usePage();
       <div class="flex justify-around">
         
         <Link
-          :href="route('profile.edit')"
+          :href="route('notifications')"
           class="flex flex-col items-center py-2 px-3 text-xs font-medium"
-          :class="route().current('profile.edit') ? 'text-indigo-600' : 'text-gray-500 hover:text-indigo-600'"
+          :class="route().current('notifications') ? 'text-indigo-600' : 'text-gray-500 hover:text-indigo-600'"
         >
           <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>

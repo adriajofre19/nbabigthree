@@ -42,8 +42,6 @@ const updateTeamName = () => {
 };
 
 
-let suplentes = ref(props.players.filter(player => player.role === 'suplente'));
-
 function getFirstName(name) {
     name = name.split(' ')[1];
     return name.length > 7 ? name.substring(0, 7) + '...' : name; 
@@ -61,7 +59,6 @@ function openChangePlayerModal(playerId) {
     form.suplent_id = suplentOfSelectedPlayer.id;
     
     changePlayer.value = true;
-
 }
 
 </script>

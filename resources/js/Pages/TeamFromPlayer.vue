@@ -3,11 +3,15 @@ import { ref } from 'vue';
 import { defineProps } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import Modal from '@/Components/Modal.vue';
+import { useForm } from '@inertiajs/vue3';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const props = defineProps({
     user: Object,
     players: Object,
-
+    playersofAuthenticatedUser: Object,
+    AuthenticatedUser: Object,
 });
 
 function getFirstName(name) {
@@ -18,6 +22,41 @@ function getFirstName(name) {
 const players = ref(props.players);
 
 const titulars = ref(players.value.filter(player => player.role === 'titular'));
+
+const changePlayer = ref(false);
+
+const selectedPlayer = ref('');
+const sender_id = ref('');
+const tradeofSelectedPlayer = ref('');
+const receiver_id = ref('');
+
+
+function openChangePlayerModal(playerId) {
+    selectedPlayer.value = players.value.find(player => player.id === playerId);
+    form.player_received_id = selectedPlayer.value.id;
+
+
+    if (selectedPlayer.value.user_id !== props.AuthenticatedUser.id) {
+        changePlayer.value = true;
+    }
+    
+}
+
+const form = useForm({
+    player_sent_id: '',
+    player_received_id: selectedPlayer.value.id,
+    sender_id: props.user.id,
+    receiver_id: props.AuthenticatedUser.id,
+});
+
+const submit = () => {
+    form.post(route('create-notification-to-trade.create'), {
+        onSuccess: () => {
+            changePlayer.value = false;
+        },
+    });
+};
+
 
 </script>
 
@@ -152,6 +191,52 @@ const titulars = ref(players.value.filter(player => player.role === 'titular'));
     
     
     </AuthenticatedLayout>
+
+    <Modal :show="changePlayer" @close="changePlayer = false">
+    <form @submit.prevent="submit">
     
+    <div class="p-8">
+        
+        <div class="flex justify-around items-center flex-col">
+            <h1 class="text-xl text-bold font-bold items-left mb-4">Intercambiar jugador</h1>
+        <div>
+        <img :src="selectedPlayer.avatar" class="w-20 h-auto mx-auto" />
+        <div class="text-center bg-gray-400 py-1">{{ getFirstName(selectedPlayer.name) }}</div>
+        </div>
+
+        <div>
+        <svg class="w-8 h-8 text-gray-800 text-center" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16 10 3-3m0 0-3-3m3 3H5v3m3 4-3 3m0 0 3 3m-3-3h14v-3"/>
+        </svg>
+        </div>
+
+
+        <div class="sm:flex sm:flex-row">
+            <div v-for="player in playersofAuthenticatedUser" :key="player.id" class="flex justify-center">
+            
+            <input type="radio" :id="player.id" v-model="form.player_sent_id" :value="player.id" class="hidden peer" required>
+                <label :for="player.id"
+                    class="inline-flex items-center justify-between w-full text-gray-500 bg-white border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
+                    <div class="block">
+                        <img :src="player.avatar" class="w-20 h-auto mx-auto"/>
+                        <div class="text-center bg-gray-400 py-1">{{ getFirstName(player.name) }}</div>
+                    </div>
+                </label>
+        </div>
+        </div>
+
+        
+
+        </div>
+        
+        <div class="flex justify-center mt-4">
+            <PrimaryButton @click="submit" :disabled="form.processing">
+                Cambiar jugador
+            </PrimaryButton>
+        </div>
+        
+    </div>
+</form>
+</Modal>
     
 </template>
