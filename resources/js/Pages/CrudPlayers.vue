@@ -136,8 +136,18 @@ const submitCsvForm = () => {
 
 const exportCsv = () => {
   const headers = ['Nombre', 'Equipo', 'Posición', 'Rol', 'Usuario', 'Avatar', 'Código del Jugador'];
-  
+  /*
   const rows = playersList.value.filter(player => player.role === 'titular').map(player => [
+    player.name,
+    player.team,
+    player.position,
+    player.role,
+    getUserById(player.user_id).name,
+    player.avatar,
+    player.player_code
+  ]); */
+
+  const rows = playersList.value.map(player => [
     player.name,
     player.team,
     player.position,
