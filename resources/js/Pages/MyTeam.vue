@@ -128,7 +128,7 @@ function openChangePlayerModal(playerId) {
                         </div>
                         <div class="flex justify-center">
                         <div v-for="player in players" :key="player.id" class="mt-4">
-                            <div v-if="player.role === 'suplente'" class="text-center w-10 bg-red-400 py-1 text-white rounded-lg">{{ player.stats }}</div>
+                            <div v-if="player.role === 'suplente'" @click="openChangePlayerModal(player.id)" class="text-center w-10 bg-red-400 py-1 text-white rounded-lg">{{ player.stats }}</div>
                             <img v-if="player.role === 'suplente'" :src="player.avatar" class="w-20 h-auto mx-auto"/>
                             <div v-if="player.role === 'suplente'" class="text-center bg-gray-400 etxt-black py-1">{{ getFirstName(player.name) }}</div>
                         </div>
