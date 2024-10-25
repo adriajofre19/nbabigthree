@@ -8,7 +8,6 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 const showingNavigationDropdown = ref(false);
 const page = usePage();
 
-console.log(page.props);
 </script>
 
 <template>
