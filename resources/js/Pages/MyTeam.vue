@@ -54,14 +54,12 @@ let today = new Date();
 let hour = today.getHours();
 
 function openChangePlayerModal(playerId) {
-    form.titular_id = playerId;
-
-    selectedPlayer = props.players.find(player => player.id === playerId);
-    suplentOfSelectedPlayer = props.players.find(player => player.role === 'suplente');
-    form.suplent_id = suplentOfSelectedPlayer.id;
     
-    // si la data d-avui es divendres, entre les 8 del mati i les 11 de la nit, no es pot fer canvi de jugadors
     if (today.getDay() === 1 && hour >= 10 && hour <= 20) {
+        form.titular_id = playerId;
+        selectedPlayer = props.players.find(player => player.id === playerId);
+        suplentOfSelectedPlayer = props.players.find(player => player.role === 'suplente');
+        form.suplent_id = suplentOfSelectedPlayer.id;
         changePlayer.value = true;
     } 
 }
