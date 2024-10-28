@@ -55,7 +55,7 @@ let hour = today.getHours();
 
 function openChangePlayerModal(playerId) {
     
-    if (today.getDay() === 1 && hour >= 10 && hour <= 20) {
+    if (today.getDay() === 1 && hour >= 10 && hour <= 23) {
         form.titular_id = playerId;
         selectedPlayer = props.players.find(player => player.id === playerId);
         suplentOfSelectedPlayer = props.players.find(player => player.role === 'suplente');
