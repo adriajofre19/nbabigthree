@@ -21,7 +21,7 @@ class ClasificationController extends Controller
     
             foreach ($user->players as $player) {
                 
-                $player->total_points = Player::getPointsFromThisPlayer($player->player_code);
+                $player->total_points = Player::getPointsFromThisPlayerIfPlayerIsTitular($player->player_code);
 
                 $user->total_points += $player->total_points;
             }

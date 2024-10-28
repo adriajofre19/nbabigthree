@@ -104,7 +104,7 @@ class PlayersController extends Controller
         
 
         foreach ($players as $player) {
-            $player->stats = Player::getPointsFromThisPlayerOnThisWeek($player->player_code);
+            $player->stats = Player::getPointsFromThisPlayer($player->player_code);
        
         }
 
