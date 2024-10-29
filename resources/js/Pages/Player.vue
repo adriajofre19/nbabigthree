@@ -79,7 +79,7 @@ const formatDate = (date) => {
             <div class="mt-8">
               <h2 class="text-2xl font-bold mb-4">Partidos Recientes</h2>
               <div class="grid gap-4 sm:grid-cols-2">
-                <div v-if="game != ''" v-for="game in games" :key="game.date" class="bg-orange-700 backdrop-blur-lg rounded-lg overflow-hidden shadow-lg">
+                <div v-if="game != ''" v-for="game in games" :key="game.date" class="bg-black/20 backdrop-blur-lg rounded-lg overflow-hidden shadow-lg">
                   <div class="p-4">
                     <div class="flex justify-between items-center mb-4">
                       <div class="text-lg font-bold">{{ formatDate(game.date) }}</div>
