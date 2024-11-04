@@ -38,7 +38,14 @@ const page = usePage();
                 class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out"
                 :class="route().current('clasification') ? 'border-indigo-400 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
               >
-                Clasificación por puntos
+                Clasificación total
+              </Link>
+              <Link
+                :href="route('clasification-for-week')"
+                class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 transition duration-150 ease-in-out"
+                :class="route().current('clasification-for-week') ? 'border-indigo-400 text-gray-900' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+              >
+                Clasificación semanal
               </Link>
               <Link
                 :href="route('notifications')"
@@ -126,6 +133,16 @@ const page = usePage();
             <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
           </svg>
           Clasificación
+        </Link>
+        <Link
+          :href="route('clasification-for-week')"
+          class="flex flex-col items-center py-2 px-3 text-xs font-medium"
+          :class="route().current('clasification-for-week') ? 'text-indigo-600' : 'text-gray-500 hover:text-indigo-600'"
+        >
+          <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+          </svg>
+          Semanal
         </Link>
         <Link
           :href="route('my-team')"

@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/player/{id}', [PlayersController::class, 'getPlayerById'])->name('player');
     
     Route::get('/clasification', [ClasificationController::class, 'index'])->name('clasification');
+    Route::get('/clasification-for-week', [ClasificationController::class, 'indexForWeek'])->name('clasification-for-week');
 
     Route::get('/get-team/{id}', [PlayersController::class, 'getTeamFromThePlayer'])->name('get-team');
 
