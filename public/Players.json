@@ -26323,30 +26323,5 @@
         "points":  "11",
         "game_score":  "8.5",
         "role":  "titular"
-    },
-    {
-        "player":  "n/nembhan01",
-        "season":  "6",
-        "date":  "2024-11-04",
-        "team":  "IND",
-        "opponent":  "DAL",
-        "result":  "W (+7)",
-        "field_goals":  "4",
-        "field_goals_attempted":  "9",
-        "three_point_field_goals":  "1",
-        "three_point_field_goals_attempted":  "2",
-        "free_throws":  "2",
-        "free_throws_attempted":  "2",
-        "offensive_rebounds":  "1",
-        "defensive_rebounds":  "2",
-        "total_rebounds":  "3",
-        "assists":  "3",
-        "steals":  "0",
-        "blocks":  "0",
-        "turnovers":  "0",
-        "personal_fouls":  "3",
-        "points":  "11",
-        "game_score":  "8.5",
-        "role":  "titular"
     }
 ]
