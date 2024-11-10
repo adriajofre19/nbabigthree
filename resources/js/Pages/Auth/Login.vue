@@ -13,7 +13,7 @@ import { Head } from '@inertiajs/vue3';
                     <div>
                         <h2 class="text-4xl font-bold text-white">NBA ElBigThree</h2>
                         
-                        <p class="max-w-xl mt-3 text-gray-300">Lorem ipsum dolor sit, amet consectetur adipisicing elit. In autem ipsa, nulla laboriosam dolores, repellendus perferendis libero suscipit nam temporibus molestiae</p>
+                        <p class="max-w-xl mt-3 text-gray-300">Lorem psum dolor sit, amet consectetur adipisicing elit. In autem ipsa, nulla laboriosam dolores, repellendus perferendis libero suscipit nam temporibus molestiae</p>
                     </div>
                 </div>
             </div>
