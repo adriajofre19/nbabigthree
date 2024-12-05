@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/my-team', [PlayersController::class, 'index'])->name('my-team');
+    Route::get('/players', [PlayersController::class, 'indexPlayers'])->name('players');
     Route::post('/my-team/update', [PlayersController::class, 'update'])->name('players-titular-suplente.update');
     Route::post('/update-team-name', [PlayersController::class, 'updateTeamName'])->name('team-name.update');
 

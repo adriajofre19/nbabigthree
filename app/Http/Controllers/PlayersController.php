@@ -36,6 +36,29 @@ class PlayersController extends Controller
         ]);
     }
 
+    public function indexPlayers(Request $request)
+    {
+        $user = User::find(auth()->id());
+
+        $players = Player::where('user_id', auth()->id())->get();      
+
+        foreach ($players as $player) {
+            $player->stats = Player::getPointsFromThisPlayerOnThisWeek($player->player_code);
+        }
+
+        $titulars = Player::where('user_id', auth()->id())->where('role', 'titular')->get();
+
+        foreach ($titulars as $titular) {
+            $titular->stats = Player::getPointsFromThisPlayerOnThisWeek($titular->player_code);
+        }
+
+        return Inertia::render('Players', [
+            'players' => $players,
+            'user' => $user,
+            'titulars' => $titulars,
+        ]);
+    }
+
     public function update (Request $request)
     {
         

@@ -5,6 +5,7 @@ import { useForm } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { Head } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 
 const props = defineProps({
     players : {
@@ -75,37 +76,55 @@ function openChangePlayerModal(playerId) {
 <Head title="Mi Equipo" />
 
 <AuthenticatedLayout>
+    <nav class="sm:hidden fixed top-10 left-0 right-0 z-50" style="background-color: #12111F;">
+      <div class="flex justify-around py-2">
+        <Link
+                :href="route('my-team')"
+                class="inline-flex items-center px-1 pt-1 border-b-4 text-sm font-bold leading-5 transition duration-150 ease-in-out"
+                :class="route().current('my-team') ? 'border-red-400 text-white' : 'border-transparent text-white hover:text-gray-700 hover:border-gray-300'"
+              >
+                Plantilla
+        </Link>
+        <Link
+                :href="route('players')"
+                class="inline-flex items-center px-1 pt-1 border-b-4 text-sm font-bold leading-5 transition duration-150 ease-in-out"
+                :class="route().current('players') ? 'border-red-400 text-white' : 'border-transparent text-white hover:text-gray-700 hover:border-gray-300'"
+              >
+                Jugadores
+        </Link>
+      </div>
+    </nav>
 <section>
     <div class="py-16">
-        <div class="mx-auto sm:px-6 max-w-full text-gray-500">
+        <div class="mx-auto sm:px-6 max-w-full ">
             <div class="relative">
                 <div class="relative z-10 grid gap-3 grid-cols-6">
                     <div class="col-span-full sm:col-span-3 lg:col-span-2 overflow-hidden relative sm:p-8">
                         <div class="flex justify-center">
                         
-                            <div className="bg-gray-700 p-4">
-                                    <div className="border-4 border-white ">
-                                        <div className="relative w-80 sm:w-96 h-[32rem] bg-gray-700">
+                            <div className="p-4">
+                                    <div className="border-4 border-white" style="border-color: #4C4F60;">
+                                        <div className="relative w-80 sm:w-96 h-[32rem]">
                                             <div className="absolute inset-0 flex items-center justify-center ">
-                                                <div className="w-20 h-20 border-2 border-white rounded-full"></div>
+                                                <div className="w-20 h-20 border-4 border-white rounded-full" style="border-color: #4C4F60;"></div>
                                             </div>
                             
-                                            <div className="absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-2 border-white rounded-t-full overflow-hidden rotate-180"></div>
-                                            <div className="absolute bottom-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-2 border-white rounded-t-full overflow-hidden"></div>
+                                            <div className="absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-4 border-white rounded-t-full overflow-hidden rotate-180" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute bottom-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-4 border-white rounded-t-full overflow-hidden" style="border-color: #4C4F60;"></div>
 
-                                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-2 border-white"></div>
-                                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-2 border-white"></div>
+                                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-4 border-white" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-4 border-white" style="border-color: #4C4F60;"></div>
                             
-                                            <div className="absolute top-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-white rounded-full"></div>
-                                            <div className="absolute bottom-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-white rounded-full rotate-180"></div>
+                                            <div className="absolute top-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-4 border-white rounded-full" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute bottom-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-4 border-white rounded-full rotate-180" style="border-color: #4C4F60;"></div>
                             
-                                            <div className="absolute inset-x-0 top-1/2 border-t-2 border-white"></div>
+                                            <div className="absolute inset-x-0 top-1/2 border-t-4 border-white" style="border-color: #4C4F60;"></div>
                             
-                                            <div className="absolute inset-x-44 top-2 border-t-2 border-white"></div>
-                                            <div className="absolute top-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full"></div>
+                                            <div className="absolute inset-x-44 top-2 border-t-2 border-white" ></div>
+                                            <div className="absolute top-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full" style="border-color: #4C4F60;"></div>
                                             
                                             <div className="absolute inset-x-44 bottom-2 border-t-2 border-white rotate-180"></div>
-                                            <div className="absolute bottom-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full rotate-180"></div>
+                                            <div className="absolute bottom-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full rotate-180" style="border-color: #4C4F60;"></div>
 
                                             <div v-for="(player, index) in titulars" :key="player.id">
                                                 
@@ -133,15 +152,15 @@ function openChangePlayerModal(playerId) {
                                     </div>
                                 </div> 
                         </div>
-                        <div class="flex justify-center">
-                        <div v-for="player in players" :key="player.id" class="mt-4">
+                        <div class="flex justify-center" >
+                        <div v-for="player in players" :key="player.id" class="mt-4" >
                             <div v-if="player.role === 'suplente'" class="text-center w-10 bg-red-400 py-1 text-white rounded-lg">{{ player.stats }}</div>
                             <img v-if="player.role === 'suplente'" :src="player.avatar" class="w-20 h-auto mx-auto"/>
                             <div v-if="player.role === 'suplente'" class="text-center bg-gray-400 etxt-black py-1">{{ getFirstName(player.name) }}</div>
                         </div>
                     </div>
                     </div>
-                    <div class="col-span-full sm:col-span-3 lg:col-span-4 overflow-hidden relative rounded-xl px-4">
+    <div class="col-span-full sm:col-span-3 lg:col-span-4 overflow-hidden hidden sm:relative rounded-xl px-4">
         <div class="w-full max-w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-100">
                 <form @submit.prevent="updateTeamName">

@@ -11,7 +11,18 @@ const page = usePage();
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-orange-400 to-orange-800 flex flex-col">
+  <div class="min-h-screen flex flex-col" style="background-color: #00000A;">
+
+
+
+    <nav class="sm:hidden fixed top-0 left-0 right-0 z-50" style="background-color: #12111F;">
+      <div class="flex justify-center align-center py-4">
+        <p class="font-bold text-white">NBA</p><p class="font-bold text-red-500">TheBigThree</p> 
+      </div>
+    </nav>
+
+
+
     <!-- Desktop Navigation (hidden on mobile) -->
     <nav class="bg-white border-b border-gray-100 hidden sm:block">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,18 +117,18 @@ const page = usePage();
     </header>
 
     <!-- Page Content -->
-    <main class="flex-grow pb-16 sm:pb-0">
+    <main class="flex-grow pb-16 sm:pb-0 mt-8">
       <slot />
     </main>
 
     <!-- Mobile Bottom Navigation -->
-    <nav class="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50">
+    <nav class="sm:hidden fixed bottom-0 left-0 right-0 z-50" style="background-color: #00000A;">
       <div class="flex justify-around">
         
         <Link
           :href="route('notifications')"
           class="flex flex-col items-center py-2 px-3 text-xs font-medium"
-          :class="route().current('notifications') ? 'text-indigo-600' : 'text-gray-500 hover:text-indigo-600'"
+          :class="route().current('notifications') ? 'text-red-600' : 'text-gray-500 hover:text-red-600'"
         >
           <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
@@ -127,7 +138,7 @@ const page = usePage();
         <Link
           :href="route('clasification')"
           class="flex flex-col items-center py-2 px-3 text-xs font-medium"
-          :class="route().current('clasification') ? 'text-indigo-600' : 'text-gray-500 hover:text-indigo-600'"
+          :class="route().current('clasification') ? 'text-red-600' : 'text-gray-500 hover:text-red-600'"
         >
           <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
@@ -135,19 +146,9 @@ const page = usePage();
           Clasificación
         </Link>
         <Link
-          :href="route('clasification-for-week')"
-          class="flex flex-col items-center py-2 px-3 text-xs font-medium"
-          :class="route().current('clasification-for-week') ? 'text-indigo-600' : 'text-gray-500 hover:text-indigo-600'"
-        >
-          <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
-          </svg>
-          Semanal
-        </Link>
-        <Link
           :href="route('my-team')"
           class="flex flex-col items-center py-2 px-3 text-xs font-medium"
-          :class="route().current('my-team') ? 'text-indigo-600' : 'text-gray-500 hover:text-indigo-600'"
+          :class="route().current('my-team') ? 'text-red-600' : 'text-gray-500 hover:text-red-600'"
         >
           <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>

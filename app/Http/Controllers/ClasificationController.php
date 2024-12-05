@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Player;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 use Inertia\Inertia;
 
@@ -29,8 +31,10 @@ class ClasificationController extends Controller
 
         $sortedUsers = $users->sortByDesc('total_points');
 
+        $id = Auth::id();
         return Inertia::render('Clasification', [
             'users' => $sortedUsers->values(),
+            'id' => $id,
         ]);
     }
 
@@ -51,9 +55,10 @@ class ClasificationController extends Controller
         }
 
         $sortedUsers = $users->sortByDesc('total_points');
-
+        $id = Auth::id();
         return Inertia::render('ClasificationForWeek', [
             'users' => $sortedUsers->values(),
+            'id' => $id,
         ]);
     }
 
