@@ -5,7 +5,7 @@ import { useForm } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { Head } from '@inertiajs/vue3';
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     players : {
@@ -160,7 +160,7 @@ function openChangePlayerModal(playerId) {
                         </div>
                     </div>
                     </div>
-    <div class="col-span-full sm:col-span-3 lg:col-span-4 overflow-hidden hidden sm:relative rounded-xl px-4">
+    <div class="col-span-full sm:col-span-3 lg:col-span-4 overflow-hidden sm:relative rounded-xl px-4 hidden lg:block">
         <div class="w-full max-w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-100">
                 <form @submit.prevent="updateTeamName">
@@ -222,6 +222,8 @@ function openChangePlayerModal(playerId) {
         </div>
     </div>
 </section>
+
+
 
 
 </AuthenticatedLayout>

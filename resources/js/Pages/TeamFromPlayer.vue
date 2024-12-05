@@ -6,6 +6,7 @@ import { Head } from '@inertiajs/vue3';
 import Modal from '@/Components/Modal.vue';
 import { useForm } from '@inertiajs/vue3';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     user: Object,
@@ -65,37 +66,38 @@ const submit = () => {
     <Head :title="user.team_name" />
     
     <AuthenticatedLayout>
+        
     <section>
         <div class="py-16">
-            <div class="mx-auto sm:px-6 max-w-full text-gray-500">
+            <div class="mx-auto sm:px-6 max-w-full">
                 <div class="relative">
                     <div class="relative z-10 grid gap-3 grid-cols-6">
                         <div class="col-span-full sm:col-span-3 lg:col-span-2 overflow-hidden relative sm:p-8">
                             <div class="flex justify-center">
                             
-                                <div className="bg-gray-700 p-4">
-                                        <div className="border-4 border-white ">
-                                            <div className="relative w-80 sm:w-96 h-[32rem] bg-gray-700">
+                                <div className=" p-4">
+                                        <div className="border-4 border-white" style="border-color: #4C4F60;">
+                                            <div className="relative w-80 sm:w-96 h-[32rem] ">
                                                 <div className="absolute inset-0 flex items-center justify-center ">
-                                                    <div className="w-20 h-20 border-2 border-white rounded-full"></div>
+                                                    <div className="w-20 h-20 border-4 border-white rounded-full" style="border-color: #4C4F60;"></div>
                                                 </div>
                                 
-                                                <div className="absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-2 border-white rounded-t-full overflow-hidden rotate-180"></div>
-                                                <div className="absolute bottom-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-2 border-white rounded-t-full overflow-hidden"></div>
+                                                <div className="absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-4 border-white rounded-t-full overflow-hidden rotate-180" style="border-color: #4C4F60;"></div>
+                                                <div className="absolute bottom-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-4 border-white rounded-t-full overflow-hidden" style="border-color: #4C4F60;"></div>
     
-                                                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-2 border-white"></div>
-                                                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-2 border-white"></div>
+                                                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-4 border-white" style="border-color: #4C4F60;"></div>
+                                                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-4 border-white" style="border-color: #4C4F60;"></div>
                                 
-                                                <div className="absolute top-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-white rounded-full"></div>
-                                                <div className="absolute bottom-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-2 border-white rounded-full rotate-180"></div>
+                                                <div className="absolute top-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-4 border-white rounded-full" style="border-color: #4C4F60;"></div>
+                                                <div className="absolute bottom-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-4 border-white rounded-full rotate-180" style="border-color: #4C4F60;"></div>
                                 
-                                                <div className="absolute inset-x-0 top-1/2 border-t-2 border-white"></div>
+                                                <div className="absolute inset-x-0 top-1/2 border-t-2 border-white"style="border-color: #4C4F60;"></div>
                                 
-                                                <div className="absolute inset-x-44 top-2 border-t-2 border-white"></div>
-                                                <div className="absolute top-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full"></div>
+                                                <div className="absolute inset-x-44 top-2 border-t-2 border-white" style="border-color: #4C4F60;"></div>
+                                                <div className="absolute top-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-4 border-white rounded-full" style="border-color: #4C4F60;"></div>
                                                 
-                                                <div className="absolute inset-x-44 bottom-2 border-t-2 border-white rotate-180"></div>
-                                                <div className="absolute bottom-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full rotate-180"></div>
+                                                <div className="absolute inset-x-44 bottom-2 border-t-2 border-white rotate-180" style="border-color: #4C4F60;"></div>
+                                                <div className="absolute bottom-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-4 border-white rounded-full rotate-180" style="border-color: #4C4F60;"></div>
     
                                                 <div v-for="(player, index) in titulars" :key="player.id">
                                                     
@@ -131,7 +133,7 @@ const submit = () => {
                             </div>
                         </div>
                         </div>
-                        <div class="col-span-full sm:col-span-3 lg:col-span-4 overflow-hidden relative rounded-xl px-4">
+        <div class="col-span-full sm:col-span-3 lg:col-span-4 overflow-hidden sm:relative rounded-xl px-4 hidden lg:block">
             <div class="w-full max-w-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
                 <header class="px-5 py-4 border-b border-gray-100">
                     <h2 class="font-semibold text-gray-800">{{ props.user.team_name }} </h2><span class="text-sm bg-gray-300 p-1 rounded-md text-black">{{ props.user.name }}</span>
@@ -188,6 +190,50 @@ const submit = () => {
             </div>
         </div>
     </section>
+
+    <section class="mt-14">
+    <div v-for="player in players" :key="player.id" class="py-1 px-2">
+    <div class="flex items-center bg-gradient-to-r from-gray-900 to-gray-800 overflow-hidden w-full max-w-xl">
+    <div class="w-24 h-32 flex-shrink-0" style="background-color: #12111F;">
+      <img 
+        :src="player.avatar" 
+        alt="Player photo"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- Player Info -->
+    <div class="flex-1 p-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <a :href="route('player', player.id)">
+            <h2 class="text-xl font-bold text-white">{{ player.name }}</h2>
+          </a>
+          <p class="text-gray-400 text-sm">{{ player.team }}</p>
+        </div>
+        <div class="text-right">
+          <span class="text-gray-400 text-sm">PFSY</span>
+          <span class="text-white text-2xl font-bold ml-1">{{ player.stats }}</span>
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div class="flex gap-2 mt-2">
+        <div v-if="player.role === 'titular'" class="flex items-center bg-green-500 rounded-full px-3 py-1">
+          <span class="text-white text-sm ml-1">Titular</span>
+        </div>
+        <div v-else-if="player.role === 'suplente'" class="flex items-center bg-red-500 rounded-full px-3 py-1">
+          <span class="text-white text-sm ml-1">Suplente</span>
+        </div>
+
+        <div class="bg-pink-500 rounded-full px-3 py-1">
+          <span class="text-white text-sm font-medium">{{player.position}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
     
     
     </AuthenticatedLayout>

@@ -86,7 +86,7 @@ const props = defineProps({
                     </div>
                 </div>
             </section>
-
+<div class="sm:hidden">
 <div v-for="(user, index) in users" :key="user.id">
     <div :class="{'bg-[#1e2337] text-white': id !== user.id, 
       'bg-gray-200 text-black': id === user.id}" class="p-4 sm:max-w-xl">
@@ -104,7 +104,9 @@ const props = defineProps({
             </div>
           </div>
           <div>
+            <a :href="'/get-team/'+user.id">
             <h3 className="font-medium">{{ user.name }}</h3>
+            </a>
             <p className="text-sm text-gray-400">{{ user.team_name }}</p>
           </div>
         </div>
@@ -115,5 +117,6 @@ const props = defineProps({
       </div>
     </div>
   </div>
+</div>
   </AuthenticatedLayout>
 </template>

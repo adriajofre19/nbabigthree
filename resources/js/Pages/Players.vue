@@ -62,7 +62,9 @@ const props = defineProps({
     <div class="flex-1 p-4">
       <div class="flex items-center justify-between">
         <div>
-          <h2 class="text-xl font-bold text-white">{{ player.name }}</h2>
+          <a :href="route('player', player.id)">
+            <h2 class="text-xl font-bold text-white">{{ player.name }}</h2>
+          </a>
           <p class="text-gray-400 text-sm">{{ player.team }}</p>
         </div>
         <div class="text-right">
