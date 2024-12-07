@@ -50,6 +50,10 @@ const form = useForm({
     receiver_id: props.AuthenticatedUser.id,
 });
 
+const close = () => {
+    changePlayer.value = false;
+};
+
 const submit = () => {
     form.post(route('create-notification-to-trade.create'), {
         onSuccess: () => {
@@ -240,32 +244,105 @@ const submit = () => {
 
     <Modal :show="changePlayer" @close="changePlayer = false">
     <form @submit.prevent="submit">
+        
     
-    <div class="p-8">
+    <div class="">
         
         <div class="flex justify-around items-center flex-col">
-            <h1 class="text-xl text-bold font-bold items-left mb-4">Intercambiar jugador</h1>
+            <nav class="sm:hidden fixed top-0 left-0 right-0 z-50" style="background-color: #12111F;">
+      <div class="flex justify-center align-center py-4">
+        <p class="font-bold text-white">Intercambiar jugador</p> 
+      </div>
+    </nav>
+             
+<div class="flex items-center bg-gradient-to-r from-gray-900 to-gray-800 overflow-hidden w-full max-w-xl mt-16">
+    <div class="w-24 h-36 flex-shrink-0" style="background-color: #12111F;">
+      <img 
+        :src="selectedPlayer.avatar" 
+        alt="Player photo"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- Player Info -->
+    <div class="flex-1 p-4">
+      <div class="flex items-center justify-between">
         <div>
-        <img :src="selectedPlayer.avatar" class="w-20 h-auto mx-auto" />
-        <div class="text-center bg-gray-400 py-1">{{ getFirstName(selectedPlayer.name) }}</div>
+          
+            <h2 class="text-xl font-bold text-white">{{ selectedPlayer.name }}</h2>
+          
+          <p class="text-gray-400 text-sm">{{ selectedPlayer.team }}</p>
         </div>
-
-        <div>
-        <svg class="w-8 h-8 text-gray-800 text-center" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16 10 3-3m0 0-3-3m3 3H5v3m3 4-3 3m0 0 3 3m-3-3h14v-3"/>
-        </svg>
+        <div class="text-right">
+          <span class="text-gray-400 text-sm">PFSY</span>
+          <span class="text-white text-2xl font-bold ml-1">{{ selectedPlayer.stats }}</span>
         </div>
+      </div>
+
+      <!-- Badges -->
+      <div class="flex gap-2 mt-2">
+        <div class="bg-pink-500 rounded-full px-3 py-1">
+          <span class="text-white text-sm font-medium">{{selectedPlayer.position}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-4">
+        
+        <svg width="50" height="30" xmlns="http://www.w3.org/2000/svg">
+<!-- Triángulo apuntando hacia abajo (rojo) -->
+<polygon points="10,5 20,5 15,15" fill="red" />
+
+<!-- Triángulo apuntando hacia arriba (verde) -->
+<polygon points="25,15 30,5 35,15" fill="green" />
+</svg>
+
+    </div>
+
+    
 
 
-        <div class="sm:flex sm:flex-row">
-            <div v-for="player in playersofAuthenticatedUser" :key="player.id" class="flex justify-center">
+        <div class="sm:flex sm:flex-row flex-column flex-wrap w-full">
+            <div v-for="player in playersofAuthenticatedUser" :key="player.id" class="flex justify-center w-full sm:px-12">
             
             <input type="radio" :id="player.id" v-model="form.player_sent_id" :value="player.id" class="hidden peer" required>
                 <label :for="player.id"
-                    class="inline-flex items-center justify-between w-full text-gray-500 bg-white border border-gray-200 cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
-                    <div class="block">
-                        <img :src="player.avatar" class="w-20 h-auto mx-auto"/>
-                        <div class="text-center bg-gray-400 py-1">{{ getFirstName(player.name) }}</div>
+                    class="inline-flex items-center justify-between w-full text-gray-500 cursor-pointer peer-checked:border-blue-600 peer-checked:border peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100">
+                    <div class="block w-full">
+                        
+<div class="flex items-center bg-gradient-to-r from-gray-900 to-gray-800 overflow-hidden w-full max-w-xl min-w-full">
+    <div class="w-24 h-36 flex-shrink-0" style="background-color: #12111F;">
+      <img 
+        :src="player.avatar" 
+        alt="Player photo"
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- Player Info -->
+    <div class="flex-1 p-4">
+      <div class="flex items-center justify-between">
+        <div>
+          
+            <h2 class="text-xl font-bold text-white">{{ player.name }}</h2>
+          
+          <p class="text-gray-400 text-sm">{{ selectedPlayer.team }}</p>
+        </div>
+        <div class="text-right">
+          <span class="text-gray-400 text-sm">PFSY</span>
+          <span class="text-white text-2xl font-bold ml-1">{{ selectedPlayer.stats }}</span>
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div class="flex gap-2 mt-2">
+        <div class="bg-pink-500 rounded-full px-3 py-1">
+          <span class="text-white text-sm font-medium">{{selectedPlayer.position}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
                     </div>
                 </label>
         </div>
@@ -275,10 +352,11 @@ const submit = () => {
 
         </div>
         
-        <div class="flex justify-center mt-4">
-            <PrimaryButton @click="submit" :disabled="form.processing">
+        <div class="flex mt-4 justify-around h-12" >
+            <button @click="close" class="rounded-md text-white px-4" style="background-color: #12111F;">Cancelar</button>
+            <button @click="submit" :disabled="form.processing" class="rounded-md text-white px-4" style="background-color: #12111F;">
                 Cambiar jugador
-            </PrimaryButton>
+            </button>
         </div>
         
     </div>
