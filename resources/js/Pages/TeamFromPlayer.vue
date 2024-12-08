@@ -132,7 +132,7 @@ const submit = () => {
                             <div class="flex justify-center">
                             <div v-for="player in players" :key="player.id" class="mt-4">
                                 <div v-if="player.role === 'suplente'" class="text-center w-10 bg-red-400 py-1 text-white rounded-lg">{{ player.stats }}</div>
-                                <img v-if="player.role === 'suplente'" @click="openChangePlayerModal(player.id)" :src="player.avatar" class="w-20 h-auto mx-auto"/>
+                                <img v-if="player.role === 'suplente'" :src="player.avatar" class="w-20 h-auto mx-auto"/>
                                 <div v-if="player.role === 'suplente'" class="text-center bg-gray-400 etxt-black py-1">{{ getFirstName(player.name) }}</div>
                             </div>
                         </div>
@@ -195,7 +195,7 @@ const submit = () => {
         </div>
     </section>
 
-    <section class="mt-14">
+    <section class="mt-14 sm:hidden block">
     <div v-for="player in players" :key="player.id" class="py-1 px-2">
     <div class="flex items-center bg-gradient-to-r from-gray-900 to-gray-800 overflow-hidden w-full max-w-xl">
     <div class="w-24 h-32 flex-shrink-0" style="background-color: #12111F;">
@@ -327,18 +327,18 @@ const submit = () => {
           
             <h2 class="text-xl font-bold text-white">{{ player.name }}</h2>
           
-          <p class="text-gray-400 text-sm">{{ selectedPlayer.team }}</p>
+          <p class="text-gray-400 text-sm">{{ player.team }}</p>
         </div>
         <div class="text-right">
           <span class="text-gray-400 text-sm">PFSY</span>
-          <span class="text-white text-2xl font-bold ml-1">{{ selectedPlayer.stats }}</span>
+          <span class="text-white text-2xl font-bold ml-1">{{ player.stats }}</span>
         </div>
       </div>
 
       <!-- Badges -->
       <div class="flex gap-2 mt-2">
         <div class="bg-pink-500 rounded-full px-3 py-1">
-          <span class="text-white text-sm font-medium">{{selectedPlayer.position}}</span>
+          <span class="text-white text-sm font-medium">{{player.position}}</span>
         </div>
       </div>
     </div>

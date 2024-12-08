@@ -29,10 +29,17 @@ class PlayersController extends Controller
             $titular->stats = Player::getPointsFromThisPlayerOnThisWeek($titular->player_code);
         }
 
+        $suplents = Player::where('user_id', auth()->id())->where('role', 'suplente')->get();
+
+        foreach ($suplents as $suplent) {
+            $suplent->stats = Player::getPointsFromThisPlayerOnThisWeek($suplent->player_code);
+        }
+
         return Inertia::render('MyTeam', [
             'players' => $players,
             'user' => $user,
             'titulars' => $titulars,
+            'suplents' => $suplents,
         ]);
     }
 
@@ -134,6 +141,10 @@ class PlayersController extends Controller
         $AuthenticatedUser = Auth::user();
 
         $playersofAuthenticatedUser = Player::where('user_id', $AuthenticatedUser->id)->get();
+
+        foreach ($playersofAuthenticatedUser as $player) {
+            $player->stats = Player::getPointsFromThisPlayer($player->player_code);
+        }
 
         return Inertia::render('TeamFromPlayer', [
             'players' => $players,
