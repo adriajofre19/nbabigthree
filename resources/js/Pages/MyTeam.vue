@@ -242,7 +242,7 @@ function openChangePlayerModal(playerId) {
         <div class="">
         
         <div class="flex justify-around items-center flex-col">
-              <nav class="sm:hidden fixed top-0 left-0 right-0 z-50" style="background-color: #12111F;">
+        <nav class="sm:hidden fixed top-0 left-0 right-0 z-50" style="background-color: #12111F;">
         <div class="flex justify-center align-center py-4">
           <p class="font-bold text-white">Intercambiar jugador</p> 
         </div>

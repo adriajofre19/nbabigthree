@@ -54,40 +54,97 @@ const form = useForm({
 
 <template>
   <AuthenticatedLayout>
-    <div v-for="notificacion in notifications" class="bg-white shadow-md rounded-lg p-6 max-w-2xl mx-auto mt-8">
-      <div class="text-center mb-6">
-        <h2 class="text-xl font-semibold text-gray-800">Propuesta de Intercambio de {{ notificacion.receiver.name }}</h2>
-      </div>
-      
-      <div class="flex items-center justify-between mb-8">
-        <!-- Jugador enviado -->
-        <div class="flex flex-col items-center w-1/3">
-          <img :src="notificacion.player_sent.avatar" class="w-24 h-auto mx-auto" />
-          <h3 class="font-semibold text-base text-center">{{ notificacion.player_sent.name }}</h3>
-          <p class="text-sm text-gray-600 text-center">{{ notificacion.player_sent.team }}</p>
-          <p class="text-sm text-gray-600 text-center">{{ capitalizeFirstLetter(notificacion.player_sent.position) }}</p>
-          <span class="text-sm bg-gray-300 p-1 rounded-lg text-gray-600 text-center">{{ notificacion.receiver.name }}</span>
 
-        </div>
-        
-        <!-- SVG de intercambio -->
-        <div class="w-1/3 flex justify-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-          </svg>
-        </div>
-        
-        <!-- Jugador recibido -->
-        <div class="flex flex-col items-center w-1/3">
-          <img :src="notificacion.player_received.avatar" class="w-24 h-auto mx-auto" />
-          <h3 class="font-semibold text-base text-center">{{ notificacion.player_received.name }}</h3>
-          <p class="text-sm text-gray-600 text-center">{{ notificacion.player_received.team }}</p>
-          <p class="text-sm text-gray-600 text-center">{{ capitalizeFirstLetter(notificacion.player_received.position) }}</p>
-          <span class="text-sm bg-gray-300 p-1 px-2 rounded-lg text-gray-600 text-center">Tu</span>
+    <div v-for="notificacion in notifications">
+      <div class="bg-white shadow-md p-6 max-w-2xl mx-auto mt-8" style="background-color: #12111F;">
+        <div class="text-center flex justify-center">
+          <h2 class="font-semibold text-white">Intercambio de </h2>-<h2 class="text-red-500"> {{ notificacion.receiver.name }}</h2>
         </div>
       </div>
-      
-      <div class="border-t border-gray-200 pt-6">
+        
+        
+      <div class="flex items-center mx-auto bg-gradient-to-r from-gray-900 to-gray-800 overflow-hidden w-full max-w-2xl ">
+      <div class="w-24 h-36 flex-shrink-0" style="background-color: #12111F;">
+        <img 
+          :src="notificacion.player_sent.avatar" 
+          alt="Player photo"
+          class="w-full h-full object-cover"
+        />
+      </div>
+  
+      <!-- Player Info -->
+      <div class="flex-1 p-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <a :href="`/player/${notificacion.player_sent.id}`">
+              <h2 class="text-xl font-bold text-white">{{ notificacion.player_sent.name }}</h2>
+            </a>
+            
+            <p class="text-gray-400 text-sm">{{ notificacion.player_sent.team }}</p>
+          </div>
+          <div class="text-right">
+            <span class="text-gray-400 text-sm">PFSY</span>
+            <span class="text-white text-2xl font-bold ml-1">{{ notificacion.player_sent.stats }}</span>
+          </div>
+        </div>
+  
+        <!-- Badges -->
+        <div class="flex gap-2 mt-2">
+          <div class="bg-pink-500 rounded-full px-3 py-1">
+            <span class="text-white text-sm font-medium">{{notificacion.player_sent.position}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 flex justify-center">
+          
+          <svg width="50" height="30" xmlns="http://www.w3.org/2000/svg">
+  <!-- Triángulo apuntando hacia abajo (rojo) -->
+  <polygon points="10,5 20,5 15,15" fill="red" />
+  
+  <!-- Triángulo apuntando hacia arriba (verde) -->
+  <polygon points="25,15 30,5 35,15" fill="green" />
+  </svg>
+  
+      </div>
+
+
+      <div class="flex items-center mx-auto bg-gradient-to-r from-gray-900 to-gray-800 overflow-hidden w-full max-w-2xl ">
+      <div class="w-24 h-36 flex-shrink-0" style="background-color: #12111F;">
+        <img 
+          :src="notificacion.player_received.avatar" 
+          alt="Player photo"
+          class="w-full h-full object-cover"
+        />
+      </div>
+  
+      <!-- Player Info -->
+      <div class="flex-1 p-4">
+        <div class="flex items-center justify-between">
+          <div>
+              <a :href="`/player/${notificacion.player_received.id}`">
+              <h2 class="text-xl font-bold text-white">{{ notificacion.player_received.name }}</h2>
+              </a>
+            
+            <p class="text-gray-400 text-sm">{{ notificacion.player_received.team }}</p>
+          </div>
+          <div class="text-right">
+            <span class="text-gray-400 text-sm">PFSY</span>
+            <span class="text-white text-2xl font-bold ml-1">{{ notificacion.player_received.stats }}</span>
+          </div>
+        </div>
+  
+        <!-- Badges -->
+        <div class="flex gap-2 mt-2">
+          <div class="bg-pink-500 rounded-full px-3 py-1">
+            <span class="text-white text-sm font-medium">{{notificacion.player_received.position}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class=" pt-6">
         <div class="flex justify-center space-x-4">
           <button @click="handleAction('reject', notificacion)" class="px-6 py-2 bg-black text-white text-sm font-medium rounded hover:bg-gray-800 transition duration-300 ease-in-out">
             Rechazar
@@ -97,7 +154,6 @@ const form = useForm({
           </button>
         </div>
       </div>
-
     </div>
   </AuthenticatedLayout>
   </template>

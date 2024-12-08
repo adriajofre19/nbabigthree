@@ -24,7 +24,12 @@ class NotificationsController extends Controller
 
         foreach ($notifications as $notification) {
             $notification->player_sent = Player::where('id', $notification->player_sent_id)->first();
+            $notification->player_sent->stats = Player::getPointsFromThisPlayerOnThisWeek($notification->player_sent->player_code);
+
+            
             $notification->player_received = Player::where('id', $notification->player_received_id)->first();
+            $notification->player_received->stats = Player::getPointsFromThisPlayerOnThisWeek($notification->player_received->player_code);
+
             $notification->receiver = User::where('id', $notification->receiver_id)->first();
         }
 
