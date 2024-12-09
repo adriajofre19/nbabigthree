@@ -104,7 +104,9 @@ const props = defineProps({
             </div>
           </div>
           <div>
+            <a :href="'/get-team/'+user.id">
             <h3 className="font-medium">{{ user.name }}</h3>
+          </a>
             <p className="text-sm text-gray-400">{{ user.team_name }}</p>
           </div>
         </div>
