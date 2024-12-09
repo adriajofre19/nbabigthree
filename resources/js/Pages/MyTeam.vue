@@ -114,57 +114,62 @@ function openChangePlayerModal(playerId) {
                                     <div className="border-4 border-white" style="border-color: #4C4F60;">
                                         <div className="relative w-80 sm:w-96 h-[32rem]">
                                             <div className="absolute inset-0 flex items-center justify-center ">
-                                                <div className="w-20 h-20 border-4 border-white rounded-full" style="border-color: #4C4F60;"></div>
+                                                <div className="w-20 h-20 border-4 border-white rounded-full -z-20" style="border-color: #4C4F60;"></div>
                                             </div>
                             
-                                            <div className="absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-4 border-white rounded-t-full overflow-hidden rotate-180" style="border-color: #4C4F60;"></div>
-                                            <div className="absolute bottom-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-4 border-white rounded-t-full overflow-hidden" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute top-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-4 border-white rounded-t-full overflow-hidden rotate-180 -z-20" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute bottom-[0rem] left-1/2 transform -translate-x-1/2 w-60 h-48 border-4 border-white rounded-t-full overflow-hidden -z-20" style="border-color: #4C4F60;"></div>
 
-                                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-4 border-white" style="border-color: #4C4F60;"></div>
-                                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-4 border-white" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-4 border-white -z-20" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-28 border-4 border-white -z-20" style="border-color: #4C4F60;"></div>
                             
-                                            <div className="absolute top-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-4 border-white rounded-full" style="border-color: #4C4F60;"></div>
-                                            <div className="absolute bottom-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-4 border-white rounded-full rotate-180" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute top-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-4 border-white rounded-full -z-20" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute bottom-[4.4rem] left-1/2 transform -translate-x-1/2 w-20 h-20 border-4 border-white rounded-full rotate-180 -z-20" style="border-color: #4C4F60;"></div>
                             
-                                            <div className="absolute inset-x-0 top-1/2 border-t-4 border-white" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute inset-x-0 top-1/2 border-t-4 border-white -z-20" style="border-color: #4C4F60;"></div>
                             
-                                            <div className="absolute inset-x-44 top-2 border-t-2 border-white" ></div>
-                                            <div className="absolute top-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute inset-x-44 top-2 border-t-2 border-white -z-20" ></div>
+                                            <div className="absolute top-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full -z-20" style="border-color: #4C4F60;"></div>
                                             
-                                            <div className="absolute inset-x-44 bottom-2 border-t-2 border-white rotate-180"></div>
-                                            <div className="absolute bottom-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full rotate-180" style="border-color: #4C4F60;"></div>
+                                            <div className="absolute inset-x-44 bottom-2 border-t-2 border-white rotate-180 -z-20"></div>
+                                            <div className="absolute bottom-[0.6rem] left-1/2 transform -translate-x-1/2 w-4 h-4 border-2 border-white rounded-full rotate-180 -z-20" style="border-color: #4C4F60;"></div>
 
                                             <div v-for="(player, index) in titulars" :key="player.id">
                                                 
-                                                <img @click="openChangePlayerModal(player.id)" v-if="index === 1 && player.role === 'titular'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[7rem] right-[3rem]" />
-                                                <div v-if="index === 1 && player.role === 'titular'" className="absolute bottom-[5rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                                <div v-if="index === 1 && player.role === 'titular'" className="absolute bottom-[10.5rem] right-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center text-white rounded-lg">{{ player.stats }}</div>
+                                                <img @click="openChangePlayerModal(player.id)" v-if="index === 1 && player.role === 'titular'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[6rem] right-[3rem]" />
+                                                <div v-if="index === 1 && player.role === 'titular'" className="absolute bottom-[5rem] right-[3rem] transform w-20 h-24 bg-gray-400 text-center -z-10" style="background-color: #232435;"></div>
+                                                <div v-if="index === 1 && player.role === 'titular'" className="absolute bottom-[4rem] right-[3rem] transform w-20 h-8 border-2 border-white bg-white text-center">{{ getFirstName(player.name) }}</div>
+                                                <div v-if="index === 1 && player.role === 'titular'" className="absolute bottom-[10rem] right-[2rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center text-white rounded-lg">{{ player.stats }}</div>
                                                 
                                                 <img @click="openChangePlayerModal(player.id)" v-if="index === 0 && player.role === 'titular'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[4.5rem] left-[3rem]" />
-                                                <div v-if="index === 0 && player.role === 'titular'" className="absolute top-[8rem] left-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                                <div v-if="index === 0 && player.role === 'titular'" className="absolute top-[3rem] left-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center text-white rounded-lg">{{ player.stats }}</div>
+                                                <div v-if="index === 0 && player.role === 'titular'" className="absolute top-[3rem] left-[3rem] transform w-20 h-24 bg-gray-400 text-center -z-10" style="background-color: #232435;"></div>
+                                                <div v-if="index === 0 && player.role === 'titular'" className="absolute top-[8rem] left-[3rem] transform w-20 h-8 border-2 border-white bg-white text-center">{{ getFirstName(player.name) }}</div>
+                                                <div v-if="index === 0 && player.role === 'titular'" className="absolute top-[2rem] left-[2rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center text-white rounded-lg">{{ player.stats }}</div>
 
                                                 <img @click="openChangePlayerModal(player.id)" v-if="index === 2 && player.role === 'titular'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[5rem] right-[3rem]" />
-                                                <div v-if="index === 2 && player.role === 'titular'" className="absolute top-[8.5rem] right-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                                <div v-if="index === 2 && player.role === 'titular'" className="absolute top-[3.5rem] right-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center text-white rounded-lg">{{ player.stats }}</div>
+                                                <div v-if="index === 2 && player.role === 'titular'" className="absolute top-[3.5rem] right-[3rem] transform w-20 h-24 bg-gray-400 text-center -z-10" style="background-color: #232435;"></div>
+                                                <div v-if="index === 2 && player.role === 'titular'" className="absolute top-[8.5rem] right-[3rem] transform w-20 h-8 border-2 border-white bg-white text-center">{{ getFirstName(player.name) }}</div>
+                                                <div v-if="index === 2 && player.role === 'titular'" className="absolute top-[2.5rem] right-[2rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center text-white rounded-lg">{{ player.stats }}</div>
 
                                                 <img @click="openChangePlayerModal(player.id)" v-if="index === 3 && player.role === 'titular'" :src="player.avatar" class="absolute w-20 h-auto mx-auto bottom-[5rem] left-[3rem]" />
-                                                <div v-if="index === 3 && player.role === 'titular'" className="absolute bottom-[3rem] left-[3rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                                <div v-if="index === 3 && player.role === 'titular'" className="absolute bottom-[8.5rem] left-[3rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center text-white rounded-lg">{{ player.stats }}</div>
+                                                <div v-if="index === 3 && player.role === 'titular'" className="absolute bottom-[4rem] left-[3rem] transform w-20 h-24 bg-white text-center -z-10" style="background-color: #232435;"></div>
+                                                <div v-if="index === 3 && player.role === 'titular'" className="absolute bottom-[3rem] left-[3rem] transform w-20 h-8 border-2 border-white bg-white text-center">{{ getFirstName(player.name) }}</div>
+                                                <div v-if="index === 3 && player.role === 'titular'" className="absolute bottom-[9rem] left-[2rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center text-white rounded-lg">{{ player.stats }}</div>
 
                                                 <img @click="openChangePlayerModal(player.id)" v-if="index === 4 && player.role === 'titular'" :src="player.avatar" class="absolute w-20 h-auto mx-auto top-[13.5rem] left-[8rem]" />
-                                                <div v-if="index === 4 && player.role === 'titular'" className="absolute top-[17rem] left-[8rem] transform w-20 h-8 border-2 border-gray-400 bg-gray-400 text-center">{{ getFirstName(player.name) }}</div>
-                                                <div v-if="index === 4 && player.role === 'titular'" className="absolute top-[12rem] left-[8rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center text-white rounded-lg">{{ player.stats }}</div>
+                                                <div v-if="index === 3 && player.role === 'titular'" className="absolute top-[12rem] left-[8rem] transform w-20 h-24 bg-white text-center -z-10" style="background-color: #232435;"></div>
+                                                <div v-if="index === 4 && player.role === 'titular'" className="absolute top-[17rem] left-[8rem] transform w-20 h-8 border-2 border-white bg-white text-center">{{ getFirstName(player.name) }}</div>
+                                                <div v-if="index === 4 && player.role === 'titular'" className="absolute top-[11rem] left-[7rem] transform w-10 h-8 border-2 border-red-400 bg-red-400 text-center text-white rounded-lg">{{ player.stats }}</div>
                                             </div> 
                                         </div>
                                     </div>
                                 </div> 
                         </div>
-                        <div class="flex justify-center" >
-                        <div v-for="player in players" :key="player.id" class="mt-4" >
-                            <div v-if="player.role === 'suplente'" class="text-center w-10 bg-red-400 py-1 text-white rounded-lg">{{ player.stats }}</div>
-                            <img v-if="player.role === 'suplente'" :src="player.avatar" class="w-20 h-auto mx-auto"/>
-                            <div v-if="player.role === 'suplente'" class="text-center bg-gray-400 etxt-black py-1">{{ getFirstName(player.name) }}</div>
+                        <div class="flex justify-around sm:px-8 px-4">
+                        <div v-for="player in suplents" :key="player.id" class="mt-4 w-20 h-30 rounded-lg" style="background-color: #232435;">
+                            <div class="text-center w-10 bg-red-400 py-1 text-white rounded-lg">{{ player.stats }}</div>
+                            <img :src="player.avatar" class="w-20 h-auto mx-auto"/>
+                            <div class="text-center bg-white text-black py-1">{{ getFirstName(player.name) }}</div>
                         </div>
                     </div>
                     </div>
