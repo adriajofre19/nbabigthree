@@ -38,17 +38,24 @@ You can import them using a tool like **phpMyAdmin**, **DBeaver**, or the comman
 
 ---
 
-## 🚀 Step 2: Start the Development Server
+## 🔐 Step 2: Configure Environment Variables
+
+GOOGLE_OAUTH_ID=your_google_client_id
+GOOGLE_OAUTH_KEY=your_google_client_secret
+
+php artisan key:generate
+
+## 🚀 Step 3: Start the Development Server
 
 In your project root directory, run the following commands:
 
-Set .env variables from Google Auth id
-
 ### Install frontend dependencies and start Vite:
-```bash
+
 npm install       # Only required the first time
-npm run dev       # Compiles frontend assets
+npm run dev       
 php artisan serve
+
+
 
 
 
